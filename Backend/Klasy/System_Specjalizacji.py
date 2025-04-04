@@ -36,16 +36,6 @@ class SystemSpecjalizacji:
             Specjalizacja("Urologia"),
             Specjalizacja("Reumatologia"),
         ]
-    def wyswietl_etap(self,etap):
-        if etap == 0:
-            self.specjalizacje[0].poziom = 0
-        elif etap == 1:
-            self.specjalizacje[1].poziom = 1
-        elif etap == 2:
-            self.specjalizacje[2].poziom = 2
-        elif etap == 3:
-            self.specjalizacje[3].poziom = 3
-
     def wyswietl_specjalizacje(self):
         print("Wybierz specjalizację, która Cię interesuje:")
 
@@ -55,13 +45,13 @@ class SystemSpecjalizacji:
                 print("Nieprawidłowy numer specjalizacji")
                 return
 
-            print("Na jakim etapie edukacji jesteś?")
+            print("Na jakim etapie edukacji jesteś?\n")
             print("0 - Student, 1 - Stażysta, 2 - Rezydent, 3 - Specjalista")
             etap = int(input("Wprowadź numer etapu: "))
 
             poziomy = ["Student", "Stażysta", "Rezydent", "Specjalista"]
             if etap < 0 or etap > 3:
-                print("Nieprawidłowy numer etapu.")
+                print("Nieprawidłowy numer etapu")
                 return
 
             self.specjalizacje[wybor].poziom = poziomy[etap]

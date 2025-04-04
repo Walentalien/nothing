@@ -1,5 +1,4 @@
 import os
-import random
 from tkinter import Image
 
 
@@ -16,7 +15,7 @@ def czy_nadcisnienie(cisnienie_skurczowe, cisnienie_rozkurczowe):
         cisnienie_skurczowe = float(cisnienie_skurczowe)
         cisnienie_rozkurczowe = float(cisnienie_rozkurczowe)
     except ValueError:
-        return "Błąd: Podaj liczby.", -1
+        return "Błąd!!!!! Podaj liczby.", -1
     if cisnienie_skurczowe < 120 and cisnienie_rozkurczowe < 80:
         return "Prawidłowe ciśnienie krwi", 0
     elif 120 <= cisnienie_skurczowe < 130 and cisnienie_rozkurczowe < 80:
@@ -99,31 +98,34 @@ class FunkcjeWatrobowe:
         self.ggtp = ggtp
         self.albuminy = albuminy
 
-    def ocen_alt(self):
+    def a_alt(self):
         if self.alt <= 40:
             return "ALT w normie", 0
-        return f"Podwyższone ALT: {self.alt} U/L", 1
+        return "ALT podwyższone", 1
 
-    def ocen_ast(self):
+    def a_ast(self):
         if self.ast <= 40:
-            return "AST w normie"
-        return f"Podwyższone AST: {self.ast} U/L",2
+            return "AST w normie" ,0
+        return "AST podwyższone",1
 
-
-    def ocen_bilirubine(self):
+    def a_bilirubine(self):
         if self.bilirubina <= 1.2:
-            return "Bilirubina w normie"
-        return f"Podwyższona bilirubina: {self.bilirubina} mg/dL",3
+            return "Bilirubina w normie", 0
+        return "Podwyższona Bilirubina",1
 
-    def ocen_ggtp(self):
+    def a_ggtp(self):
         if self.ggtp <= 60:
-            return "GGTP w normie"
-        return f"Podwyższone GGTP: {self.ggtp} U/L",4
+            return "GGTP w normie",0
+        return "Podwyszona GGTP", 1
 
-    def ocen_albuminy(self):
+    def a_albuminy(self):
         if 3.4 <= self.albuminy <= 5.4:
-            return "Albuminy w normie"
-        return f"Nieprawidłowy poziom albumin: {self.albuminy} g/dL",5
+            return "Albuminy w normie", o
+        elif self.albuminy > 5.4:
+            "hiperalbuminemia", 1
+        else:
+            "hipoalbuminemia", 2
+
 
 
 
@@ -140,8 +142,8 @@ class AnalizaMoczu:
 
     def a_kolor(self):
         if self.kolor in ["słomkowy", "żółty", "jasnożółty"]:
-            return "Prawidłowy kolor moczu"
-        return f"Nieprawidłowy kolor moczu: {self.kolor}"
+            return "Prawidłowy kolor moczu", 0
+        return "Nieprawidłowy kolor moczu", 1
 
     def a_przejrzystosc(self):
         return self.przejrzystosc == "przejrzysty"
@@ -166,7 +168,7 @@ class AnalizaMoczu:
 class EKG:
     def __init__(self, data, wynik, plik_ekg):
         self.data = data
-        self.__wynik = wynik
+        self.wynik = wynik
         self.plik_ekg = plik_ekg
         #w zależnośći  od dostępnych EKG -- będziemy zwiększac liczbe typ_rytmu
         self.typy_rytmu = {

@@ -1,0 +1,121 @@
+ScreenManager:
+    MainMenu:
+    ButtonMenu:
+    PatientInfo:
+
+<MainMenu>:
+    name: "main"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 20
+        padding: 50
+        Label:
+            text: "Welcome to Virtual Doctor"
+            font_size: '24sp'
+        Button:
+            text: "Start"
+            font_size: '20sp'
+            on_release:
+                root.manager.current = "button_menu"
+
+<ButtonMenu>:
+    name: "button_menu"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 10
+        padding: 40
+        Label:
+            text: "Select a Specialization"
+            font_size: '22sp'
+        Button:
+            text: "Specialization 1"
+            on_release:
+                root.manager.get_screen('patient_info').set_patient(1)
+                root.manager.current = "patient_info"
+        Button:
+            text: "Specialization 2"
+            on_release:
+                root.manager.get_screen('patient_info').set_patient(2)
+                root.manager.current = "patient_info"
+        Button:
+            text: "Specialization 3"
+            on_release:
+                root.manager.get_screen('patient_info').set_patient(3)
+                root.manager.current = "patient_info"
+        Button:
+            text: "Specialization 4"
+            on_release:
+                root.manager.get_screen('patient_info').set_patient(4)
+                root.manager.current = "patient_info"
+        Button:
+            text: "Specialization 5"
+            on_release:
+                root.manager.get_screen('patient_info').set_patient(5)
+                root.manager.current = "patient_info"
+
+<PatientInfo>:
+    name: "patient_info"
+    BoxLayout:
+        orientation: "vertical"
+        padding: 40
+        spacing: 20
+
+        Label:
+            id: info_label
+            text: "Patient Info"
+            font_size: '22sp'
+            size_hint_y: None
+            height: self.texture_size[1] + 20
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                text: "Name: John Doe"
+                font_size: '18sp'
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            Label:
+                text: "Age: 45"
+                font_size: '18sp'
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            Label:
+                text: "Blood Type: O+"
+                font_size: '18sp'
+                size_hint_y: None
+                height: self.texture_size[1]
+
+        Label:
+            text: "Diagnosis:"
+            font_size: '18sp'
+            size_hint_y: None
+            height: self.texture_size[1]
+
+        TextInput:
+            id: diagnosis_input
+            hint_text: "Enter diagnosis here..."
+            multiline: True
+            size_hint_y: 0.3
+            font_size: '16sp'
+
+        Button:
+            text: "Submit Diagnosis"
+            size_hint_y: None
+            height: 50
+            on_release:
+                info_label.text = "Diagnosis submitted!"
+
+        Button:
+            text: "Back to Menu"
+            size_hint_y: None
+            height: 50
+            on_release:
+                root.manager.current = "button_menu"
+
+

@@ -1,6 +1,15 @@
 import os
 from tkinter import Image
 
+from Backend.Klasy.patient import Patient
+
+
+class Diagnosis:
+    def __init__(self,pat : Patient):
+        self.patient =  pat
+
+    def pulse_analyze(self):
+        self.patient.pulse
 
 
 

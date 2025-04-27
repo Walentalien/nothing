@@ -1,5 +1,5 @@
-from Backend.Klasy.biochemistry import Biochemistry, BiochemistryTests
-from Backend.Klasy.hematology import BloodTest
+from Backend.Tests.biochemistry import BiochemistryTests
+from Backend.Tests.hematology import BloodTest
 
 
 class UrineTests:

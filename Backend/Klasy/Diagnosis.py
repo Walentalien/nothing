@@ -2,12 +2,7 @@ import os
 from tkinter import Image
 
 
-# nadcisnienie
-#  0 - norma
-#  1 - przedciśnieniowy
-#  2 - nadciśnienie stopnia 1
-#  3 - nadciśnienie stopnia 2
-#  4 - natychmiastowa interwencja
+
 
 
 def czy_nadcisnienie(cisnienie_skurczowe, cisnienie_rozkurczowe):

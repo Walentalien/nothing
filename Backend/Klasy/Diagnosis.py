@@ -1,39 +1,3 @@
-import os
-from tkinter import Image
-
-from Backend.Klasy.patient import Patient
-
-
-class Diagnosis:
-    def __init__(self,pat : Patient):
-        self.patient =  pat
-
-    def pulse_analyze(self):
-        self.patient.pulse
-
-
-
-
-def czy_nadcisnienie(cisnienie_skurczowe, cisnienie_rozkurczowe):
-    try:
-        cisnienie_skurczowe = float(cisnienie_skurczowe)
-        cisnienie_rozkurczowe = float(cisnienie_rozkurczowe)
-    except ValueError:
-        return "Błąd!!!!! Podaj liczby.", -1
-    if cisnienie_skurczowe < 120 and cisnienie_rozkurczowe < 80:
-        return "Prawidłowe ciśnienie krwi", 0
-    elif 120 <= cisnienie_skurczowe < 130 and cisnienie_rozkurczowe < 80:
-        return "Stan przednadciśnieniowy", 1
-    elif 130 <= cisnienie_skurczowe < 140 or 80 <= cisnienie_rozkurczowe < 90:
-        return "Nadciśnienie stopnia 1", 2
-    elif 140 <= cisnienie_skurczowe or 90 <= cisnienie_rozkurczowe:
-        return "Nadciśnienie stopnia 2", 3
-    elif cisnienie_skurczowe > 200 or cisnienie_rozkurczowe > 140:
-        return "Przełom nadciśnieniowy – wymaga natychmiastowej interwencji medycznej", 4
-    else:
-        return "Nieprawidłowe wartości ciśnienia krwi", -1
-
-
 
 #Morfologia
 

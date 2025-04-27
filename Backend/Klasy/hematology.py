@@ -27,7 +27,6 @@ class BloodTest(Enum):
     PCT = "PCT"
 
 
-class hematology():
-    def __init__(self, blood: BloodTest):
-        self.blood = blood
-        self.OB
+
+
+

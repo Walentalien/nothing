@@ -1,6 +1,13 @@
+from Backend.Klasy.biochemistry import Biochemistry, BiochemistryTests
+from Backend.Klasy.hematology import BloodTest
+
+
+class UrineTests:
+    pass
+
 
 class Patient:
-    def __init__(self,name, age, gender):
+    def __init__(self,name: str, age: int, gender: str):
         self.name = name
         self.age = age
         self.gender = gender
@@ -14,6 +21,13 @@ class Patient:
             "sp_o2": 98,
             "symptoms": {}
         }
+        self.medical_history = []
+        self.allergies = []
+        self.medications = []
+        self.blood_parameters = {blood: None for blood in BloodTest}
+        self.biochemistry = {bio: None for bio in BiochemistryTests}
+        self.urine = {urine: None for urine in UrineTests}
+        
 # pulse/pressure/temperature/weight/height/sp_o2 -- const parameters for all patients
 # Adding a symptom like headache etc
     def set_parameters(self, pulse, systolic_pressure, diastolic_pressure, temperature,weight, height, sp_o2):
@@ -24,6 +38,12 @@ class Patient:
         self.parameters["weight"] = weight
         self.parameters["height"] = height
         self.parameters["sp_o2"] = sp_o2
+
+    def add_medical_history(self, medical_history: list):
+        self.medical_history.append(medical_history)
+
+    def add_allergies(self, allergen: str):
+        self.allergies.append(allergen)
 
 
     def get_parameters(self):

@@ -1,7 +1,5 @@
 
 
-
-
 class MedicalTestOrder:
     def __init__(self):
         self.ordered_tests = []
@@ -11,3 +9,7 @@ class MedicalTestOrder:
 
     def get_all_tests(self):
         return [test.value for test in self.ordered_tests]
+
+
+
+

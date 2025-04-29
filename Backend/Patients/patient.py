@@ -1,10 +1,8 @@
+from Backend.Medications.medications import MedicationType
 from Backend.Tests.biochemistry import BiochemistryTests
 from Backend.Tests.hematology import BloodTest
 
-
-class UrineTests:
-    pass
-
+#pain_level [0-10]
 
 class Patient:
     def __init__(self,name: str, age: int, gender: str):
@@ -19,7 +17,49 @@ class Patient:
             "weight": 70,
             "height": 170,
             "sp_o2": 98,
-            "symptoms": {}
+            "symptoms": {
+        # Skale (0–10)
+        "pain_level": 0,
+        "infection_level": 0,
+        "inflammation_level": 0,
+        "breath_difficulty_level": 0,
+        "nausea_level": 0,
+        "anxiety_level": 0,
+
+        # Objawy obecne/nieobecne
+        "vomiting": False,
+        "diarrhea": False,
+        "constipation": False,
+        "cough": False,
+        "productive_cough": False,
+        "shortness_of_breath": False,
+        "chest_pain": False,
+        "headache": False,
+        "dizziness": False,
+        "syncope": False,                 # omdlenie
+        "fever": False,
+        "chills": False,
+        "sore_throat": False,
+        "runny_nose": False,
+        "nasal_congestion": False,
+        "loss_of_smell": False,
+        "loss_of_taste": False,
+        "joint_pain": False,
+        "muscle_ache": False,
+        "skin_rash": False,
+        "itchiness": False,
+        "swelling": False,
+        "bleeding": False,
+        "urinary_pain": False,
+        "frequent_urination": False,
+        "vision_blur": False,
+        "hearing_loss": False,
+        "sleep_disturbance": False,
+        "appetite_loss": False,
+        "weight_loss": False,
+        "weight_gain": False
+}
+
         }
         self.medical_history = []
         self.allergies = []
@@ -27,7 +67,7 @@ class Patient:
         self.blood_parameters = {blood: None for blood in BloodTest}
         self.biochemistry = {bio: None for bio in BiochemistryTests}
         self.urine = {urine: None for urine in UrineTests}
-        
+
 # pulse/pressure/temperature/weight/height/sp_o2 -- const parameters for all patients
 # Adding a symptom like headache etc
     def set_parameters(self, pulse, systolic_pressure, diastolic_pressure, temperature,weight, height, sp_o2):
@@ -102,6 +142,45 @@ class Patient:
             return "Isolated Systolic Hypertension"
         else:
             return "Undefined"
+
+
+    def apply_medications(self, medication: MedicationType):
+        effects = {
+        MedicationType.BETA_BLOCKER: {
+             self.parameters["pulse"]: -10,
+             self.parameters["systolic_pressure"]: -10,
+             self.parameters["diastolic_pressure"]: -5
+        },
+        MedicationType.ACE_INHIBITOR: {
+            self.parameters["systolic_pressure"]: -8,
+            self.parameters["diastolic_pressure"]: -5
+        },
+        MedicationType.CALCIUM_CHANNEL_BLOCKER: {
+            self.parameters["systolic_pressure"]: -6,
+            self.parameters["diastolic_pressure"]: -4
+        },
+        MedicationType.VASOPRESSOR: {
+            self.parameters["systolic_pressure"]: +15,
+            self.parameters["diastolic_pressure"]: +10
+        },
+        MedicationType.DIURETIC: {
+            self.parameters["systolic_pressure"]: -8,
+            self.parameters["diastolic_pressure"]: -4,
+            self.parameters["weight"]: -1
+        },
+        MedicationType.NITRATES: {
+            self.parameters["systolic_pressure"]: -12,
+            self.parameters["diastolic_pressure"]: -8
+        },
+        MedicationType.PARACETAMOL: {
+            self.parameters["temperature"]: -1.0
+        },
+
+    }
+
+
+
+
 
 
 

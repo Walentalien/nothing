@@ -23,15 +23,15 @@ from screens.login_screen import LoginScreen
 from screens.register_screen import RegisterScreen
 from screens.dashboard_screen import DashboardScreen
 from screens.medications_screen import MedicationsScreen
+from screens.test_screens import TestsScreen, TestResultsScreen
+from screens.treatment_screens import TreatmentsScreen, TreatmentResultsScreen
+from screens.diagnosis_screens import DiagnosisScreen, DiagnosisResultsScreen
 from utils.game_state import GameState
 
 # Import the local database
 from utils.local_db import init_db, engine, Session
 from models.database_models import Base
-from kivy_doctor import (
-    TestsScreen, TestResultsScreen, TreatmentsScreen,
-    TreatmentResultsScreen, DiagnosisScreen, DiagnosisResultsScreen
-)
+
 # Initialize the local database
 init_db()
 
@@ -158,7 +158,11 @@ class MainMenuScreen(Screen):
     def update_for_logged_user(self, user):
         """Update the UI when a user is logged in"""
         if user:
-            self.user_info.text = f'Logged in as: {user.username}'
+            #how it was:
+            #self.user_info.text = f'Logged in as: {user.username}'
+
+            #proposed fix:
+            self.user_info.text = f'Logged in as: {user["username"]}'
             self.login_btn.text = 'Dashboard'
             self.login_btn.background_color = (0.3, 0.7, 0.5, 1)  # Teal
             self.login_btn.unbind(on_release=self.go_to_login)
@@ -549,22 +553,21 @@ class VirtualDoctorApp(App):
         # Create the screen manager
         sm = ScreenManager()
         
-        # Add screens
-        sm.add_widget(MainMenuScreen())
-        sm.add_widget(LoginScreen())
-        sm.add_widget(RegisterScreen())
-        sm.add_widget(DashboardScreen())
-        sm.add_widget(SpecializationScreen())
-        sm.add_widget(PatientScreen())
+        # Add all screens with explicit names
+        sm.add_widget(MainMenuScreen(name='main_menu'))
+        sm.add_widget(AboutScreen(name='about'))
+        sm.add_widget(SpecializationScreen(name='specialization'))
+        sm.add_widget(PatientScreen(name='patient'))
         sm.add_widget(TestsScreen(name='tests'))
         sm.add_widget(TestResultsScreen(name='test_results'))
         sm.add_widget(TreatmentsScreen(name='treatments'))
         sm.add_widget(TreatmentResultsScreen(name='treatment_results'))
         sm.add_widget(DiagnosisScreen(name='diagnosis'))
         sm.add_widget(DiagnosisResultsScreen(name='diagnosis_results'))
-        sm.add_widget(AboutScreen())
-        from screens.medications_screen import MedicationsScreen
-        sm.add_widget(MedicationsScreen())
+        sm.add_widget(LoginScreen(name='login'))
+        sm.add_widget(RegisterScreen(name='register'))
+        sm.add_widget(DashboardScreen(name='dashboard'))
+        sm.add_widget(MedicationsScreen(name='medications'))
         
         return sm
 

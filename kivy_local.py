@@ -28,7 +28,10 @@ from utils.game_state import GameState
 # Import the local database
 from utils.local_db import init_db, engine, Session
 from models.database_models import Base
-
+from kivy_doctor import (
+    TestsScreen, TestResultsScreen, TreatmentsScreen,
+    TreatmentResultsScreen, DiagnosisScreen, DiagnosisResultsScreen
+)
 # Initialize the local database
 init_db()
 
@@ -232,6 +235,7 @@ class AboutScreen(Screen):
         self.manager.transition.direction = 'right'
         self.manager.current = 'main_menu'
 
+from kivy_doctor import VirtualDoctorApp
 
 class SpecializationScreen(Screen):
     def __init__(self, **kwargs):
@@ -536,38 +540,31 @@ class PatientScreen(Screen):
 
 
 class VirtualDoctorApp(App):
+    def __init__(self, **kwargs):
+        super(VirtualDoctorApp, self).__init__(**kwargs)
+        self.game_state = GameState()
+        self.current_user = None
+
     def build(self):
         # Create the screen manager
         sm = ScreenManager()
         
-        # Add all screens
+        # Add screens
         sm.add_widget(MainMenuScreen())
-        sm.add_widget(AboutScreen())
-        sm.add_widget(SpecializationScreen())
-        sm.add_widget(PatientScreen())
-        
-        # Import other screens
-        from kivy_doctor import TestsScreen, TestResultsScreen, TreatmentsScreen
-        from kivy_doctor import TreatmentResultsScreen, DiagnosisScreen, DiagnosisResultsScreen
-        
-        # Add imported screens
-        sm.add_widget(TestsScreen())
-        sm.add_widget(TestResultsScreen())
-        sm.add_widget(TreatmentsScreen())
-        sm.add_widget(TreatmentResultsScreen())
-        sm.add_widget(DiagnosisScreen())
-        sm.add_widget(DiagnosisResultsScreen())
         sm.add_widget(LoginScreen())
         sm.add_widget(RegisterScreen())
         sm.add_widget(DashboardScreen())
-        
-        # Import MedicationsScreen class and add it
+        sm.add_widget(SpecializationScreen())
+        sm.add_widget(PatientScreen())
+        sm.add_widget(TestsScreen(name='tests'))
+        sm.add_widget(TestResultsScreen(name='test_results'))
+        sm.add_widget(TreatmentsScreen(name='treatments'))
+        sm.add_widget(TreatmentResultsScreen(name='treatment_results'))
+        sm.add_widget(DiagnosisScreen(name='diagnosis'))
+        sm.add_widget(DiagnosisResultsScreen(name='diagnosis_results'))
+        sm.add_widget(AboutScreen())
         from screens.medications_screen import MedicationsScreen
         sm.add_widget(MedicationsScreen())
-        
-        # Initialize game state
-        self.game_state = GameState()
-        self.current_user = None
         
         return sm
 

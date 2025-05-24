@@ -4,7 +4,7 @@ from typing import Optional, List, Dict, Any
 from datetime import datetime
 
 from models.patient import Patient
-from models.doctor import Doctor
+from models.doctor import Doctor, get_available_specializations
 from utils.data_loader import DataLoader
 from utils.db_manager import DBManager  # Import the PostgreSQL database manager
 
@@ -52,6 +52,24 @@ class GameState:
             doctor: Doctor object representing the player
         """
         self.doctor = doctor
+    
+    def set_doctor_specialization(self, specialization: str) -> None:
+        """
+        Set the doctor's specialization.
+        
+        Args:
+            specialization: The medical specialization to set
+        """
+        # Get available specializations
+        available_specs = get_available_specializations()
+        
+        # Find the matching specialization
+        spec = next((s for s in available_specs if s.name == specialization), None)
+        
+        if not self.doctor:
+            self.doctor = Doctor(name="Player", specialization=spec)
+        else:
+            self.doctor.specialization = spec
     
     def load_patient(self, patient_id: str) -> bool:
         """

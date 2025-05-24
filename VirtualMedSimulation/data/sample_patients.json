@@ -1,0 +1,94 @@
+{
+    "patients": [
+        {
+            "patient_id": "P001",
+            "name": "John Smith",
+            "age": 45,
+            "gender": "Male",
+            "medical_history": ["Hypertension", "High Cholesterol"],
+            "current_symptoms": ["Chest Pain", "Shortness of Breath", "Sweating"],
+            "vital_signs": {
+                "pulse": 110,
+                "systolic_bp": 160,
+                "diastolic_bp": 95,
+                "temperature": 37.2,
+                "respiratory_rate": 22,
+                "oxygen_saturation": 94
+            },
+            "diagnosis": null,
+            "condition_severity": 7
+        },
+        {
+            "patient_id": "P002",
+            "name": "Sarah Johnson",
+            "age": 32,
+            "gender": "Female",
+            "medical_history": ["Asthma"],
+            "current_symptoms": ["Cough", "Fever", "Fatigue"],
+            "vital_signs": {
+                "pulse": 95,
+                "systolic_bp": 125,
+                "diastolic_bp": 80,
+                "temperature": 38.7,
+                "respiratory_rate": 20,
+                "oxygen_saturation": 96
+            },
+            "diagnosis": null,
+            "condition_severity": 4
+        },
+        {
+            "patient_id": "P003",
+            "name": "Robert Davis",
+            "age": 67,
+            "gender": "Male",
+            "medical_history": ["Diabetes Type 2", "Coronary Artery Disease", "Stroke (2018)"],
+            "current_symptoms": ["Dizziness", "Confusion", "Headache"],
+            "vital_signs": {
+                "pulse": 88,
+                "systolic_bp": 175,
+                "diastolic_bp": 100,
+                "temperature": 36.5,
+                "respiratory_rate": 18,
+                "oxygen_saturation": 95
+            },
+            "diagnosis": null,
+            "condition_severity": 6
+        },
+        {
+            "patient_id": "P004",
+            "name": "Emily Wilson",
+            "age": 28,
+            "gender": "Female",
+            "medical_history": [],
+            "current_symptoms": ["Abdominal Pain", "Nausea", "Loss of Appetite"],
+            "vital_signs": {
+                "pulse": 100,
+                "systolic_bp": 110,
+                "diastolic_bp": 70,
+                "temperature": 37.8,
+                "respiratory_rate": 16,
+                "oxygen_saturation": 98
+            },
+            "diagnosis": null,
+            "condition_severity": 3
+        },
+        {
+            "patient_id": "P005",
+            "name": "Michael Chen",
+            "age": 52,
+            "gender": "Male",
+            "medical_history": ["Allergies to Penicillin"],
+            "current_symptoms": ["Rash", "Itching", "Swelling"],
+            "vital_signs": {
+                "pulse": 105,
+                "systolic_bp": 135,
+                "diastolic_bp": 85,
+                "temperature": 37.4,
+                "respiratory_rate": 18,
+                "oxygen_saturation": 97
+            },
+            "diagnosis": null,
+            "condition_severity": 2
+        }
+    ]
+}

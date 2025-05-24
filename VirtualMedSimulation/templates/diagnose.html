@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-title">Make Diagnosis</div>
+    <p>Based on the patient's symptoms and test results, select the most likely diagnosis:</p>
+    
+    {% if diagnostic_matches %}
+    <h3>Recommended Diagnoses</h3>
+    <ul class="diagnosis-list">
+        {% for diagnosis, confidence in diagnostic_matches %}
+        <li>
+            <div>
+                <strong>{{ diagnosis.name }}</strong><br>
+                <span class="
+                    {% if confidence > 0.6 %}confidence-high
+                    {% elif confidence > 0.3 %}confidence-medium
+                    {% else %}confidence-low{% endif %}
+                ">
+                    Confidence: {{ (confidence * 100)|int }}%
+                </span>
+            </div>
+            <a href="/make_diagnosis/{{ diagnosis.name|replace(' ', '_') }}/{{ (confidence * 100)|int }}" class="btn">Select</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    {% if other_diagnoses %}
+    <h3>Other Possible Diagnoses</h3>
+    <ul class="diagnosis-list">
+        {% for diagnosis in other_diagnoses %}
+        <li>
+            <div>
+                <strong>{{ diagnosis.name }}</strong>
+            </div>
+            <a href="/make_diagnosis/{{ diagnosis.name|replace(' ', '_') }}/0" class="btn">Select</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <div style="margin-top: 20px;">
+        <a href="/patient" class="btn">Back to Patient</a>
+    </div>
+</div>
+{% endblock %}

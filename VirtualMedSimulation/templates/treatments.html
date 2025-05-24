@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-title">Available Treatments</div>
+    <p>Select a treatment to administer to the current patient:</p>
+    
+    <ul class="treatment-list">
+        {% for treatment in treatments %}
+        <li>
+            {{ treatment }}
+            <a href="/apply_treatment/{{ treatment|replace(' ', '_') }}" class="btn btn-green">Apply</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <div style="margin-top: 20px;">
+        <a href="/patient" class="btn">Back to Patient</a>
+    </div>
+</div>
+{% endblock %}

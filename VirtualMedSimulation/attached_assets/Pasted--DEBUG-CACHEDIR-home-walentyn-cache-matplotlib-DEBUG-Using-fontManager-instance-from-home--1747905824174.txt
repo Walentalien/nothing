@@ -1,0 +1,151 @@
+[DEBUG  ] CACHEDIR=/home/walentyn/.cache/matplotlib
+[DEBUG  ] Using fontManager instance from /home/walentyn/.cache/matplotlib/fontlist-v390.json
+ Traceback (most recent call last):
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation/kivy_doctor.py", line 30, in <module>
+     from utils.db_manager import DBManager
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation/utils/db_manager.py", line 27, in <module>
+     engine = create_engine(DATABASE_URL, poolclass=NullPool, connect_args={"sslmode": "disable"}, echo=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "<string>", line 2, in create_engine
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/util/deprecations.py", line 281, in warned
+     return fn(*args, **kwargs)  # type: ignore[no-any-return]
+            ^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 549, in create_engine
+     u = _url.make_url(url)
+         ^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/url.py", line 860, in make_url
+     raise exc.ArgumentError(
+ sqlalchemy.exc.ArgumentError: Expected string or URL object, got None
+(.venv) walentyn@lenovo:/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation$ ./integral 0.000000
+(.venv) walentyn@lenovo:/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation$ python kivy_doctor.py
+[INFO   ] [Logger      ] Record log in /home/walentyn/.kivy/logs/kivy_25-05-22_5.txt
+[INFO   ] [Kivy        ] v2.3.1
+[INFO   ] [Kivy        ] Installed at "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/kivy/__init__.py"
+[INFO   ] [Python      ] v3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0]
+[INFO   ] [Python      ] Interpreter at "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/bin/python"
+[INFO   ] [Logger      ] Purge log fired. Processing...
+[INFO   ] [Logger      ] Purge finished!
+[INFO   ] [Factory     ] 195 symbols loaded
+[INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+[INFO   ] [Text        ] Provider: sdl2
+[INFO   ] [Window      ] Provider: sdl2
+[INFO   ] [GL          ] Using the "OpenGL" graphics system
+[INFO   ] [GL          ] Backend used <sdl2>
+[INFO   ] [GL          ] OpenGL version <b'4.6 (Compatibility Profile) Mesa 24.2.8-1ubuntu1~24.04.1'>
+[INFO   ] [GL          ] OpenGL vendor <b'Intel'>
+[INFO   ] [GL          ] OpenGL renderer <b'Mesa Intel(R) UHD Graphics 630 (CFL GT2)'>
+[INFO   ] [GL          ] OpenGL parsed version: 4, 6
+[INFO   ] [GL          ] Shading version <b'4.60'>
+[INFO   ] [GL          ] Texture max size <16384>
+[INFO   ] [GL          ] Texture max units <32>
+[INFO   ] [Window      ] auto add sdl2 input provider
+[INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+[DEBUG  ] [matplotlib data path] /media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/matplotlib/mpl-data
+[DEBUG  ] CONFIGDIR=/home/walentyn/.config/matplotlib
+[DEBUG  ] interactive is False
+[DEBUG  ] platform is linux
+[DEBUG  ] CACHEDIR=/home/walentyn/.cache/matplotlib
+[DEBUG  ] Using fontManager instance from /home/walentyn/.cache/matplotlib/fontlist-v390.json
+ Traceback (most recent call last):
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation/kivy_doctor.py", line 30, in <module>
+     from utils.db_manager import DBManager
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation/utils/db_manager.py", line 27, in <module>
+     engine = create_engine(DATABASE_URL, poolclass=NullPool, connect_args={"sslmode": "disable"}, echo=False)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "<string>", line 2, in create_engine
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/util/deprecations.py", line 281, in warned
+     return fn(*args, **kwargs)  # type: ignore[no-any-return]
+            ^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 549, in create_engine
+     u = _url.make_url(url)
+         ^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/url.py", line 860, in make_url
+     raise exc.ArgumentError(
+ sqlalchemy.exc.ArgumentError: Expected string or URL object, got None
+(.venv) walentyn@lenovo:/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation$  export DATABASE_URL=sqlite:///virtualdoctor.db
+(.venv) walentyn@lenovo:/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation$ python kivy_doctor.py
+[INFO   ] [Logger      ] Record log in /home/walentyn/.kivy/logs/kivy_25-05-22_6.txt
+[INFO   ] [Kivy        ] v2.3.1
+[INFO   ] [Kivy        ] Installed at "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/kivy/__init__.py"
+[INFO   ] [Python      ] v3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0]
+[INFO   ] [Python      ] Interpreter at "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/bin/python"
+[INFO   ] [Logger      ] Purge log fired. Processing...
+[INFO   ] [Logger      ] Purge finished!
+[INFO   ] [Factory     ] 195 symbols loaded
+[INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil (img_ffpyplayer ignored)
+[INFO   ] [Text        ] Provider: sdl2
+[INFO   ] [Window      ] Provider: sdl2
+[INFO   ] [GL          ] Using the "OpenGL" graphics system
+[INFO   ] [GL          ] Backend used <sdl2>
+[INFO   ] [GL          ] OpenGL version <b'4.6 (Compatibility Profile) Mesa 24.2.8-1ubuntu1~24.04.1'>
+[INFO   ] [GL          ] OpenGL vendor <b'Intel'>
+[INFO   ] [GL          ] OpenGL renderer <b'Mesa Intel(R) UHD Graphics 630 (CFL GT2)'>
+[INFO   ] [GL          ] OpenGL parsed version: 4, 6
+[INFO   ] [GL          ] Shading version <b'4.60'>
+[INFO   ] [GL          ] Texture max size <16384>
+[INFO   ] [GL          ] Texture max units <32>
+[INFO   ] [Window      ] auto add sdl2 input provider
+[INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+[DEBUG  ] [matplotlib data path] /media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/matplotlib/mpl-data
+[DEBUG  ] CONFIGDIR=/home/walentyn/.config/matplotlib
+[DEBUG  ] interactive is False
+[DEBUG  ] platform is linux
+[DEBUG  ] CACHEDIR=/home/walentyn/.cache/matplotlib
+[DEBUG  ] Using fontManager instance from /home/walentyn/.cache/matplotlib/fontlist-v390.json
+ Traceback (most recent call last):
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation/kivy_doctor.py", line 30, in <module>
+     from utils.db_manager import DBManager
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation/utils/db_manager.py", line 974, in <module>
+     init_db()
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/VirtualMedSimulation/utils/db_manager.py", line 35, in init_db
+     Base.metadata.create_all(engine)
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/sql/schema.py", line 5924, in create_all
+     bind._run_ddl_visitor(
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3247, in _run_ddl_visitor
+     with self.begin() as conn:
+   File "/usr/lib/python3.12/contextlib.py", line 137, in __enter__
+     return next(self.gen)
+            ^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3237, in begin
+     with self.connect() as conn:
+          ^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3273, in connect
+     return self._connection_cls(self)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 145, in __init__
+     self._dbapi_connection = engine.raw_connection()
+                              ^^^^^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 3297, in raw_connection
+     return self.pool.connect()
+            ^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 449, in connect
+     return _ConnectionFairy._checkout(self)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 1264, in _checkout
+     fairy = _ConnectionRecord.checkout(pool)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 713, in checkout
+     rec = pool._do_get()
+           ^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/pool/impl.py", line 308, in _do_get
+     return self._create_connection()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 390, in _create_connection
+     return _ConnectionRecord(self)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 675, in __init__
+     self.__connect()
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 901, in __connect
+     with util.safe_reraise():
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+     raise exc_value.with_traceback(exc_tb)
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/pool/base.py", line 897, in __connect
+     self.dbapi_connection = connection = pool._invoke_creator(self)
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/create.py", line 646, in connect
+     return dialect.connect(*cargs, **cparams)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   File "/media/walentyn/HDD/SUKA_KYVI_APP_DOCTOR/ThirdVerios/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 625, in connect
+     return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ TypeError: 'sslmode' is an invalid keyword argument for Connection()

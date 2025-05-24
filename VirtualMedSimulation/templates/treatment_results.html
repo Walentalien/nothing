@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+    <div class="card-title">Treatment Applied: {{ treatment_name }}</div>
+    <p>{{ result.message }}</p>
+    
+    {% if result.effects %}
+    <h3>Effects</h3>
+    <ul>
+        {% for effect in result.effects %}
+        <li>{{ effect }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    {% if result.vital_changes %}
+    <h3>Vital Sign Changes</h3>
+    <ul>
+        {% for vital, change in result.vital_changes.items() %}
+        <li><strong>{{ vital|replace('_', ' ')|capitalize }}:</strong> {{ change }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <div style="margin-top: 20px;">
+        <a href="/treatments" class="btn btn-green">Apply Another Treatment</a>
+        <a href="/patient" class="btn">Back to Patient</a>
+    </div>
+</div>
+{% endblock %}

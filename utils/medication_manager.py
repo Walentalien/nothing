@@ -6,7 +6,38 @@ from datetime import datetime
 from models.medication_local import MedicationCatalog, MedicationResponse
 from models.database_models import Medication, MedicationRecord
 from utils.local_db import Session
-
+from kivy.app import App
+try:
+    from utils.medication_manager import MedicationManager
+except ImportError:
+    # Fallback medication data if MedicationManager is not available
+    class MedicationManager:
+        @staticmethod
+        def get_all_medications():
+            return [
+                {'name': 'Aspirin', 'category': 'Painkiller', 'dosages': ['325mg', '500mg'], 'administration_routes': ['Oral']},
+                {'name': 'Acetaminophen', 'category': 'Painkiller', 'dosages': ['325mg', '500mg'], 'administration_routes': ['Oral']},
+                {'name': 'Lisinopril', 'category': 'Antihypertensive', 'dosages': ['5mg', '10mg'], 'administration_routes': ['Oral']},
+                {'name': 'Albuterol', 'category': 'Bronchodilator', 'dosages': ['90mcg'], 'administration_routes': ['Inhalation']},
+            ]
+        
+        @staticmethod
+        def get_medications_by_category(category):
+            all_meds = MedicationManager.get_all_medications()
+            return [med for med in all_meds if med['category'] == category]
+        
+        @staticmethod
+        def administer_medication(patient, medication_name, dosage, route):
+            return {
+                'success': True,
+                'medication': medication_name,
+                'dosage': dosage,
+                'route': route,
+                'effectiveness': 0.8,
+                'side_effects': [],
+                'vital_changes': {},
+                'response_text': f'{medication_name} administered successfully.'
+            }
 class MedicationManager:
     """Manages medications and medication administration for the local SQLite version"""
     

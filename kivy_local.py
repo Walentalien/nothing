@@ -556,6 +556,9 @@ class VirtualDoctorApp(App):
         self.game_state = GameState()
         self.current_user = None
 
+        # Initialize medications
+        from utils.medication_manager import MedicationManager
+        MedicationManager.initialize_medications()
     def build(self):
         # Create the screen manager
         sm = ScreenManager()

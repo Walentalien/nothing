@@ -32,20 +32,30 @@ class GameState:
     
     def _initialize_patient_data(self) -> None:
         """Initialize patient data from the database or create sample data if not available."""
-        # Load patients from the database
-        self.patients = DBManager.get_all_patients()
-        
-        # If no patients in the database, initialize sample patients
-        if not self.patients:
-            print("No patients found in database, initializing sample patients")
-            DBManager.initialize_sample_patients()
-            # Reload patients after initialization
+        try:
+            # Load patients from the database
             self.patients = DBManager.get_all_patients()
             
-            # If still no patients, use hardcoded fallback
+            # If no patients in the database, initialize sample patients ONCE
             if not self.patients:
-                print("Using hardcoded sample patients as fallback")
-                self.patients = DataLoader.get_sample_patients()
+                print("No patients found in database, using sample patients")
+                # Only initialize sample patients if they don't already exist
+                patient_count = DBManager.initialize_sample_patients()
+                if patient_count > 0:
+                    print(f"Initialized {patient_count} sample patients")
+                    # Reload patients after initialization
+                    self.patients = DBManager.get_all_patients()
+                
+                # If still no patients, use hardcoded fallback
+                if not self.patients:
+                    print("Using hardcoded sample patients as fallback")
+                    self.patients = DataLoader.get_sample_patients()
+            else:
+                print(f"Found {len(self.patients)} existing patients in database")
+        except Exception as e:
+            print(f"Error initializing patient data: {e}")
+            # Fallback to hardcoded sample patients
+            self.patients = DataLoader.get_sample_patients()
     
     def set_doctor(self, doctor: Doctor) -> None:
         """

@@ -132,9 +132,17 @@ class DBManager:
                     # Handle case where it's already a Python object
                     if isinstance(json_str, (dict, list)):
                         return json_str
+                    # Clean up the JSON string if it has issues
+                    if isinstance(json_str, str):
+                        json_str = json_str.strip()
+                        # Handle common JSON issues
+                        if json_str.startswith('{') and not json_str.endswith('}'):
+                            json_str += '}'
+                        elif json_str.startswith('[') and not json_str.endswith(']'):
+                            json_str += ']'
                     return json.loads(json_str)
-                except (json.JSONDecodeError, TypeError):
-                    print(f"Failed to parse JSON: {json_str}")
+                except (json.JSONDecodeError, TypeError) as e:
+                    print(f"Failed to parse JSON '{json_str}': {e}")
                     return default if default is not None else {}
             
             # Parse vital signs
@@ -504,9 +512,13 @@ class DBManager:
         try:
             session = Session()
             
-            # Check if patients already exist
-            if session.query(Patient).count() > 0:
-                print("Patients already exist in database")
+            # Check if base patients already exist (P001, P002, etc.)
+            existing_base_patients = session.query(Patient).filter(
+                Patient.patient_id.in_(['P001', 'P002', 'P003', 'P004', 'P005'])
+            ).count()
+            
+            if existing_base_patients > 0:
+                print(f"Base patients already exist in database ({existing_base_patients} found)")
                 return 0
             
             # Get sample patients from data loader
@@ -515,7 +527,7 @@ class DBManager:
             
             count = 0
             for patient in sample_patients:
-                # Save each patient
+                # Save each patient using the database manager
                 if DBManager.save_patient(patient):
                     count += 1
             
@@ -525,7 +537,8 @@ class DBManager:
             print(f"Error initializing sample patients in database: {e}")
             return 0
         finally:
-            session.close()
+            if 'session' in locals():
+                session.close()
 
 
     @staticmethod

@@ -514,20 +514,24 @@ class PatientScreen(Screen):
     
     def show_tests(self, instance):
         if self.game_state.doctor and self.game_state.doctor.specialization:
+            self.manager.transition.direction = 'left'
             self.manager.get_screen('tests').update_tests()
             self.manager.current = 'tests'
     
     def show_treatments(self, instance):
         if self.game_state.doctor and self.game_state.doctor.specialization:
+            self.manager.transition.direction = 'left'
             self.manager.get_screen('treatments').update_treatments()
             self.manager.current = 'treatments'
     
     def show_medications(self, instance):
         if self.game_state.doctor and self.game_state.doctor.specialization:
+            self.manager.transition.direction = 'left'
             self.manager.get_screen('medications').update_for_patient()
             self.manager.current = 'medications'
     
     def show_diagnosis(self, instance):
+        self.manager.transition.direction = 'left'
         self.manager.get_screen('diagnosis').update_diagnoses()
         self.manager.current = 'diagnosis'
     

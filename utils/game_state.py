@@ -400,6 +400,15 @@ class GameState:
             'session_start': self.session_start_time.strftime("%Y-%m-%d %H:%M:%S")
         }
         
+    def update_current_patient(self) -> None:
+        """
+        Update the current patient's state after changes (like medication administration).
+        This method can be used to refresh patient data or apply any pending changes.
+        """
+        if self.current_patient:
+            # Save the updated patient state to the database
+            self.save_current_patient()
+    
     def get_performance_summary(self) -> Dict[str, Any]:
         """
         Get a summary of the player's performance.

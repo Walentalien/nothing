@@ -195,7 +195,9 @@ class AboutScreen(Screen):
         # Add a title
         self.title = Label(
             text='About VirtualDoctor',
-            font_size=30,
+            font_size=36,
+            color=(0, 0, 0, 1),  # Black color
+            bold=True,
             size_hint=(1, 0.2)
         )
         self.layout.add_widget(self.title)
@@ -204,16 +206,18 @@ class AboutScreen(Screen):
         self.description = Label(
             text='VirtualDoctor is a medical simulation game where you can practice diagnosis and treatment in a virtual environment.\n\n'
                  'Features:\n'
-                 '- Multiple medical specializations\n'
-                 '- Realistic patient symptoms and conditions\n'
-                 '- Various medical tests and procedures\n'
-                 '- Medication administration system with patient responses\n'
-                 '- Experience points and progression system\n\n'
+                 '• Multiple medical specializations\n'
+                 '• Realistic patient symptoms and conditions\n'
+                 '• Various medical tests and procedures\n'
+                 '• Medication administration system with patient responses\n'
+                 '• Experience points and progression system\n\n'
                  'Version: 1.0.0 (SQLite Local Edition)',
-            font_size=16,
+            font_size=20,
+            color=(0, 0, 0, 1),  # Black color
             halign='left',
             valign='top',
-            size_hint=(1, 0.7)
+            size_hint=(1, 0.7),
+            padding=(10, 10)
         )
         self.description.bind(size=self.description.setter('text_size'))
         self.layout.add_widget(self.description)
@@ -221,6 +225,7 @@ class AboutScreen(Screen):
         # Back button
         self.back_btn = Button(
             text='Back to Main Menu',
+            font_size=20,
             size_hint=(1, 0.1),
             background_color=(0.3, 0.5, 0.9, 1)  # Blue
         )

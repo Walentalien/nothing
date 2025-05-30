@@ -258,7 +258,7 @@ This application was developed as an educational tool and should not replace act
         self.add_widget(layout)
     
     def go_to_main(self, instance):
-        self.manager.current = 'main'
+        self.manager.current = 'main_menu'
 
 
 class SpecializationScreen(Screen):
@@ -385,7 +385,7 @@ class SpecializationScreen(Screen):
         self.manager.current = 'patient'
     
     def go_to_main(self, instance):
-        self.manager.current = 'main'
+        self.manager.current = 'main_menu'
     
     def reset(self):
         App.get_running_app().game_state.reset_game()
@@ -564,7 +564,7 @@ class PatientScreen(Screen):
         self.manager.current = 'diagnosis'
     
     def go_to_main(self, instance):
-        self.manager.current = 'main'
+        self.manager.current = 'main_menu'
     
     def next_patient(self, instance):
         # Complete current case

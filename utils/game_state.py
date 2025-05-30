@@ -402,6 +402,60 @@ class GameState:
             'session_start': self.session_start_time.strftime("%Y-%m-%d %H:%M:%S")
         }
         
+    def apply_treatment(self, treatment_name: str) -> Dict:
+        """
+        Apply a treatment to the current patient and return results.
+        
+        Args:
+            treatment_name: Name of the treatment to apply
+            
+        Returns:
+            Dictionary containing treatment results
+        """
+        if not self.current_patient:
+            return {
+                "success": False,
+                "message": "No patient loaded",
+                "effects": {}
+            }
+        
+        if not self.doctor or not self.doctor.specialization:
+            return {
+                "success": False,
+                "message": "No doctor specialization set",
+                "effects": {}
+            }
+        
+        # Get available treatments for the doctor's specialization
+        available_treatments = self.doctor.specialization.treatments
+        
+        # Find the treatment
+        treatment = next((t for t in available_treatments if t.name == treatment_name), None)
+        
+        if not treatment:
+            return {
+                "success": False,
+                "message": f"Treatment '{treatment_name}' not available for {self.doctor.specialization.name}",
+                "effects": {}
+            }
+        
+        # Apply the treatment
+        results = self.current_patient.apply_treatment(treatment)
+        
+        # Save treatment record to database
+        if results.get("success"):
+            try:
+                DBManager.save_treatment_record(
+                    self.current_patient.patient_id,
+                    treatment_name,
+                    results.get("effects", {}),
+                    results.get("vital_changes", {})
+                )
+            except Exception as e:
+                print(f"Error saving treatment record: {e}")
+        
+        return results
+
     def update_current_patient(self) -> None:
         """
         Update the current patient's state after changes (like medication administration).

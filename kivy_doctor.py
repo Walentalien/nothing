@@ -30,9 +30,13 @@ from models.diagnosis import diagnosis_catalog
 from utils.db_manager import DBManager
 from utils.game_state import GameState
 
-# Set some global parameters
-Window.size = (800, 600)
-Window.clearcolor = (0.9, 0.9, 0.9, 1)
+# Set some global parameters (only if Window is available)
+try:
+    Window.size = (800, 600)
+    Window.clearcolor = (0.9, 0.9, 0.9, 1)
+except AttributeError:
+    # Window not available in headless environment
+    pass
 
 # Fix font rendering
 from kivy.core.text import LabelBase
@@ -1518,11 +1522,13 @@ class VirtualDoctorApp(App):
         from screens.login_screen import LoginScreen
         from screens.register_screen import RegisterScreen
         from screens.dashboard_screen import DashboardScreen
+        from screens.medications_screen import MedicationsScreen
         
         # Add user management screens
         sm.add_widget(LoginScreen(name='login'))
         sm.add_widget(RegisterScreen(name='register'))
         sm.add_widget(DashboardScreen(name='dashboard'))
+        sm.add_widget(MedicationsScreen(name='medications'))
         
         print("VirtualDoctor app initialized with PostgreSQL database")
         return sm

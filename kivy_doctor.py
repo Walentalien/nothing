@@ -327,7 +327,7 @@ class SpecializationScreen(Screen):
                 font_size=18,
                 size_hint_y=None,
                 height=dp(30),
-                # color=(0.2, 0.2, 0.8, 1)
+                color=(0.2, 0.2, 0.8, 1)
             )
             spec_box.add_widget(name_label)
             

@@ -318,7 +318,8 @@ class SpecializationScreen(Screen):
             btn = Button(
                 text=spec['name'],
                 size_hint=(1, 0.7),
-                background_color=(0.2, 0.6, 0.8, 1)
+                background_color=(0.2, 0.6, 0.8, 1),
+                color=(0, 0, 0, 1)
             )
             btn.specialization = spec['name']
             btn.bind(on_release=self.select_specialization)
@@ -327,7 +328,8 @@ class SpecializationScreen(Screen):
             # Description label
             lbl = Label(
                 text=spec['description'],
-                size_hint=(1, 0.3)
+                size_hint=(1, 0.3),
+                color=(0, 0, 0, 1)
             )
             box.add_widget(lbl)
             

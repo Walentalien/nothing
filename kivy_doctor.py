@@ -82,7 +82,7 @@ class MainMenuScreen(Screen):
         title = Label(
             text="VirtualDoctor",
             font_size=32,
-            color=(1, 1, 1, 1),
+            color=(1, 1, 1, 1),  # White text on blue background
             bold=True
         )
         title_box.add_widget(title)
@@ -428,14 +428,14 @@ class PatientScreen(Screen):
         
         # Vital signs
         vitals_panel = BoxLayout(orientation='vertical', size_hint_x=0.5)
-        vitals_title = Label(text="Vital Signs", font_size=18, size_hint_y=0.2)
+        vitals_title = Label(text="Vital Signs", font_size=18, size_hint_y=0.2, color=(0, 0, 0, 1))
         vitals_panel.add_widget(vitals_title)
         
         vitals_grid = GridLayout(cols=2, size_hint_y=0.8)
         self.vital_labels = {}
         for vital in ["Heart Rate", "Blood Pressure", "Temperature", "Respiratory Rate", "O₂ Saturation"]:
-            vitals_grid.add_widget(Label(text=vital, halign='left', text_size=(Window.width/4 - dp(20), None)))
-            label = Label(text="--", halign='left', text_size=(Window.width/4 - dp(20), None))
+            vitals_grid.add_widget(Label(text=vital, halign='left', text_size=(Window.width/4 - dp(20), None), color=(0, 0, 0, 1)))
+            label = Label(text="--", halign='left', text_size=(Window.width/4 - dp(20), None), color=(0, 0, 0, 1))
             vitals_grid.add_widget(label)
             self.vital_labels[vital] = label
         
@@ -446,7 +446,7 @@ class PatientScreen(Screen):
         
         # Middle panel with symptoms
         middle_panel = BoxLayout(orientation='vertical', size_hint_y=0.2)
-        symptoms_title = Label(text="Current Symptoms", font_size=18, size_hint_y=0.3)
+        symptoms_title = Label(text="Current Symptoms", font_size=18, size_hint_y=0.3, color=(0, 0, 0, 1))
         middle_panel.add_widget(symptoms_title)
         
         self.symptoms_label = Label(
@@ -454,7 +454,8 @@ class PatientScreen(Screen):
             font_size=16,
             halign='center',
             valign='middle',
-            size_hint_y=0.7
+            size_hint_y=0.7,
+            color=(0, 0, 0, 1)
         )
         middle_panel.add_widget(self.symptoms_label)
         

@@ -73,6 +73,8 @@ class GameState:
         Args:
             specialization: The medical specialization to set
         """
+        from models.doctor import get_available_specializations
+        
         # Get available specializations
         available_specs = get_available_specializations()
         

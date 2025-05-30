@@ -12,6 +12,10 @@ from kivy.graphics import Color, Rectangle
 from utils.medication_manager import MedicationManager
 from kivy.app import App
 
+
+# Use the local medication manager
+from utils.medication_manager import MedicationManager
+
 class MedicationsScreen(Screen):
     def __init__(self, **kwargs):
         super(MedicationsScreen, self).__init__(**kwargs)

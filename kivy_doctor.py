@@ -96,7 +96,8 @@ class MainMenuScreen(Screen):
         
         # Add image - we'll use a placeholder
         logo = Image(
-            source='assets/logo.png' if os.path.exists('assets/logo.png') else None,
+            # source='assets/logo.png' if os.path.exists('assets/logo.png') else None,
+            source='generated-icon.png' if os.path.exists('generated-icon.png') else None,
             size_hint_y=None,
             height=dp(200)
         )
@@ -1551,7 +1552,8 @@ if __name__ == '__main__':
         plt.plot(snake2_x, snake2_y, 'g-', linewidth=2)
         
         plt.title("VirtualDoctor", fontsize=20)
-        plt.savefig('assets/logo.png', bbox_inches='tight', dpi=100)
+        # plt.savefig('assets/logo.png', bbox_inches='tight', dpi=100)
+        plt.savefig('generated-icon.png', bbox_inches='tight', dpi=100)
         plt.close()
     
     VirtualDoctorApp().run()

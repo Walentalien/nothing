@@ -1,6 +1,7 @@
 modules = ["python-3.11"]
+
 [workflows]
-runButton = "Local Kivy App"
+runButton = "WebDoctor"
 
 [[workflows.workflow]]
 name = "Project"

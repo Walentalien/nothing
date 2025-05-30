@@ -277,7 +277,8 @@ class SpecializationScreen(Screen):
             text="Select Your Specialization",
             font_size=24,
             size_hint_y=None,
-            height=dp(40)
+            height=dp(40),
+            color=(0.2, 0.2, 0.2, 1), #Dark gray text
         )
         layout.add_widget(title)
         
@@ -286,7 +287,8 @@ class SpecializationScreen(Screen):
             text="Choose a medical specialty that determines your available tests and treatments",
             font_size=14,
             size_hint_y=None,
-            height=dp(30)
+            height=dp(30),
+            color=(0.2, 0.2, 0.2, 1), #Dark gray text
         )
         layout.add_widget(instructions)
         
@@ -336,7 +338,8 @@ class SpecializationScreen(Screen):
                 size_hint_y=None,
                 height=dp(40),
                 text_size=(Window.width - dp(60), None),
-                halign='left'
+                halign='left',
+                color=(0.2, 0.2, 0.2, 1),
             )
             spec_box.add_widget(desc_label)
             
@@ -347,7 +350,8 @@ class SpecializationScreen(Screen):
                 size_hint_y=None,
                 height=dp(20),
                 text_size=(Window.width - dp(60), None),
-                halign='left'
+                halign='left',
+                 color=(0.2, 0.2, 0.2, 1),
             )
             spec_box.add_widget(tests_label)
             
@@ -358,7 +362,8 @@ class SpecializationScreen(Screen):
                 size_hint_y=None,
                 height=dp(20),
                 text_size=(Window.width - dp(60), None),
-                halign='left'
+                halign='left',
+                 color=(0.2, 0.2, 0.2, 1),
             )
             spec_box.add_widget(treatments_label)
             

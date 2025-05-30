@@ -211,7 +211,7 @@ class AboutScreen(Screen):
                  '• Experience points and progression system\n\n'
                  'Version: 1.0.0 (SQLite Local Edition)',
             font_size=20,
-            color=(0, 0, 0, 1),  # Black color
+            color=(0.9, 0.9, 0.9, 1),  # Light gray color
             halign='left',
             valign='top',
             size_hint=(1, 0.7),

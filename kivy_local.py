@@ -22,10 +22,10 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from screens.login_screen import LoginScreen
 from screens.register_screen import RegisterScreen
 from screens.dashboard_screen import DashboardScreen
-from screens.medications_screen import MedicationsScreen
 from screens.test_screens import TestsScreen, TestResultsScreen
 from screens.treatment_screens import TreatmentsScreen, TreatmentResultsScreen
 from screens.diagnosis_screens import DiagnosisScreen, DiagnosisResultsScreen
+from screens.medications_screen import MedicationsScreen
 from utils.game_state import GameState
 
 # Import the local database
@@ -578,6 +578,9 @@ class VirtualDoctorApp(App):
         sm.add_widget(RegisterScreen(name='register'))
         sm.add_widget(DashboardScreen(name='dashboard'))
         sm.add_widget(MedicationsScreen(name='medications'))
+        
+        # Store reference to screen manager
+        self.screen_manager = sm
         
         return sm
 

@@ -23,7 +23,8 @@ class TreatmentsScreen(Screen):
             text="Available Treatments",
             font_size=24,
             size_hint_y=None,
-            height=dp(50)
+            height=dp(50),
+            color=(0.2, 0.2, 0.2, 1)
         )
         layout.add_widget(title)
         
@@ -106,7 +107,8 @@ class TreatmentResultsScreen(Screen):
             text="Treatment Results",
             font_size=24,
             size_hint_y=None,
-            height=dp(50)
+            height=dp(50),
+            color=(0.2, 0.2, 0.2, 1)
         )
         layout.add_widget(self.title)
         
@@ -116,7 +118,8 @@ class TreatmentResultsScreen(Screen):
             font_size=16,
             size_hint_y=0.8,
             halign='left',
-            valign='top'
+            valign='top',
+            color=(0.2, 0.2, 0.2, 1)
         )
         self.results_label.bind(size=self.results_label.setter('text_size'))
         layout.add_widget(self.results_label)

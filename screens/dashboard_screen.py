@@ -34,7 +34,7 @@ class DashboardScreen(Screen):
         self.title_label = Label(
             text="User Dashboard",
             font_size=dp(24),
-            color=(1, 1, 1, 1),
+            color=(0.2, 0.2, 0.2, 1),  # Dark gray color
             bold=True
         )
         title_box.add_widget(self.title_label)
@@ -47,20 +47,20 @@ class DashboardScreen(Screen):
         
         # Stats section
         self.stats_layout = GridLayout(cols=2, spacing=dp(10), size_hint_y=None, height=dp(200))
-        self.stats_layout.add_widget(Label(text="Username:", color=(0, 0, 0, 1), bold=True, size_hint_x=0.4))
-        self.username_label = Label(text="Loading...", color=(0, 0, 0, 1), size_hint_x=0.6)
+        self.stats_layout.add_widget(Label(text="Username:", color=(0.2, 0.2, 0.2, 1), bold=True, size_hint_x=0.4))
+        self.username_label = Label(text="Loading...", color=(0.2, 0.2, 0.2, 1), size_hint_x=0.6)
         self.stats_layout.add_widget(self.username_label)
         
-        self.stats_layout.add_widget(Label(text="Email:", color=(0, 0, 0, 1), bold=True, size_hint_x=0.4))
-        self.email_label = Label(text="Loading...", color=(0, 0, 0, 1), size_hint_x=0.6)
+        self.stats_layout.add_widget(Label(text="Email:", color=(0.2, 0.2, 0.2, 1), bold=True, size_hint_x=0.4))
+        self.email_label = Label(text="Loading...", color=(0.2, 0.2, 0.2, 1), size_hint_x=0.6)
         self.stats_layout.add_widget(self.email_label)
         
-        self.stats_layout.add_widget(Label(text="Account Created:", color=(0, 0, 0, 1), bold=True, size_hint_x=0.4))
-        self.created_label = Label(text="Loading...", color=(0, 0, 0, 1), size_hint_x=0.6)
+        self.stats_layout.add_widget(Label(text="Account Created:", color=(0.2, 0.2, 0.2, 1), bold=True, size_hint_x=0.4))
+        self.created_label = Label(text="Loading...", color=(0.2, 0.2, 0.2, 1), size_hint_x=0.6)
         self.stats_layout.add_widget(self.created_label)
         
-        self.stats_layout.add_widget(Label(text="Last Login:", color=(0, 0, 0, 1), bold=True, size_hint_x=0.4))
-        self.last_login_label = Label(text="Loading...", color=(0, 0, 0, 1), size_hint_x=0.6)
+        self.stats_layout.add_widget(Label(text="Last Login:", color=(0.2, 0.2, 0.2, 1), bold=True, size_hint_x=0.4))
+        self.last_login_label = Label(text="Loading...", color=(0.2, 0.2, 0.2, 1), size_hint_x=0.6)
         self.stats_layout.add_widget(self.last_login_label)
         
         # Game progress section
@@ -94,20 +94,20 @@ class DashboardScreen(Screen):
         )
         
         self.stats_grid = GridLayout(cols=2, spacing=dp(10), size_hint_y=None, height=dp(150))
-        self.stats_grid.add_widget(Label(text="Total Patients Treated:", color=(0, 0, 0, 1), bold=True, size_hint_x=0.6))
-        self.patients_treated_label = Label(text="0", color=(0, 0, 0, 1), size_hint_x=0.4)
+        self.stats_grid.add_widget(Label(text="Total Patients Treated:", color=(0.2, 0.2, 0.2, 1), bold=True, size_hint_x=0.6))
+        self.patients_treated_label = Label(text="0", color=(0.2, 0.2, 0.2, 1), size_hint_x=0.4)
         self.stats_grid.add_widget(self.patients_treated_label)
         
-        self.stats_grid.add_widget(Label(text="Successful Diagnoses:", color=(0, 0, 0, 1), bold=True, size_hint_x=0.6))
-        self.successful_diagnoses_label = Label(text="0", color=(0, 0, 0, 1), size_hint_x=0.4)
+        self.stats_grid.add_widget(Label(text="Successful Diagnoses:", color=(0.2, 0.2, 0.2, 1), bold=True, size_hint_x=0.6))
+        self.successful_diagnoses_label = Label(text="0", color=(0.2, 0.2, 0.2, 1), size_hint_x=0.4)
         self.stats_grid.add_widget(self.successful_diagnoses_label)
         
-        self.stats_grid.add_widget(Label(text="Current Level:", color=(0, 0, 0, 1), bold=True, size_hint_x=0.6))
-        self.level_label = Label(text="1", color=(0, 0, 0, 1), size_hint_x=0.4)
+        self.stats_grid.add_widget(Label(text="Current Level:", color=(0.2, 0.2, 0.2, 1), bold=True, size_hint_x=0.6))
+        self.level_label = Label(text="1", color=(0.2, 0.2, 0.2, 1), size_hint_x=0.4)
         self.stats_grid.add_widget(self.level_label)
         
-        self.stats_grid.add_widget(Label(text="Score:", color=(0, 0, 0, 1), bold=True, size_hint_x=0.6))
-        self.score_label = Label(text="0", color=(0, 0, 0, 1), size_hint_x=0.4)
+        self.stats_grid.add_widget(Label(text="Score:", color=(0.2, 0.2, 0.2, 1), bold=True, size_hint_x=0.6))
+        self.score_label = Label(text="0", color=(0.2, 0.2, 0.2, 1), size_hint_x=0.4)
         self.stats_grid.add_widget(self.score_label)
         
         self.stats_box.add_widget(self.stats_header)
@@ -210,7 +210,7 @@ class DashboardScreen(Screen):
             # No progress yet
             no_progress = Label(
                 text="No game progress yet. Start playing to see your statistics!",
-                color=(0.5, 0.5, 0.5, 1),
+                color=(0.2, 0.2, 0.2, 1),
                 size_hint_y=None,
                 height=dp(40)
             )

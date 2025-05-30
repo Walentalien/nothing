@@ -650,7 +650,8 @@ class PatientViewScreen(Screen):
             title="Test Results",
             content=content,
             size_hint=(0.8, 0.6),
-            auto_dismiss=True
+            auto_dismiss=True,
+            color=(0.9, 0.9, 0.9, 1),  # Light gray color
         )
         
         close_button.bind(on_press=result_popup.dismiss)

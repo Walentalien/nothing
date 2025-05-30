@@ -272,6 +272,7 @@ class SpecializationScreen(Screen):
     def __init__(self, **kwargs):
         super(SpecializationScreen, self).__init__(**kwargs)
         self.game_state = App.get_running_app().game_state
+        # Loads specializations struct
         self.specializations = get_available_specializations()
         
         layout = BoxLayout(orientation='vertical', spacing=10, padding=20)
@@ -355,7 +356,7 @@ class SpecializationScreen(Screen):
                 height=dp(20),
                 text_size=(Window.width - dp(60), None),
                 halign='left',
-                 color=(0.2, 0.2, 0.2, 1),
+                color=(0.2, 0.2, 0.2, 1),
             )
             spec_box.add_widget(tests_label)
             
@@ -601,7 +602,8 @@ class TestsScreen(Screen):
             text="Available Tests",
             font_size=24,
             size_hint_y=None,
-            height=dp(40)
+            height=dp(40),
+            color=(0.2, 0.2, 0.2, 1)
         )
         layout.add_widget(title)
         
@@ -642,7 +644,8 @@ class TestsScreen(Screen):
                 font_size=16,
                 size_hint_x=0.7,
                 halign='left',
-                text_size=(Window.width * 0.7 - dp(20), dp(50))
+                text_size=(Window.width * 0.7 - dp(20), dp(50)),
+                color=(0.2, 0.2, 0.2, 1), #Dark gray text
             )
             test_box.add_widget(test_label)
             

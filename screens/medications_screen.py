@@ -35,7 +35,7 @@ class MedicationsScreen(Screen):
         self.header.add_widget(self.back_btn)
 
         # Title
-        self.title = Label(text='Medications', font_size=24, size_hint=(0.7, 1))
+        self.title = Label(text='Medications', font_size=24, size_hint=(0.7, 1), color=(0.2, 0.2, 0.2, 1))
         self.header.add_widget(self.title)
 
         self.layout.add_widget(self.header)
@@ -47,7 +47,7 @@ class MedicationsScreen(Screen):
         self.categories_row = BoxLayout(orientation='horizontal', size_hint=(1, 0.15), spacing=10)
 
         # Category selector
-        self.category_label = Label(text='Category:', size_hint=(0.3, 1))
+        self.category_label = Label(text='Category:', size_hint=(0.3, 1), color=(0.2, 0.2, 0.2, 1))
         self.categories_row.add_widget(self.category_label)
 
         self.category_spinner = Spinner(
@@ -69,14 +69,14 @@ class MedicationsScreen(Screen):
         self.admin_layout = BoxLayout(orientation='vertical', size_hint=(1, 0.35), spacing=5)
 
         # Selected medication info
-        self.selected_med_label = Label(text='No medication selected', size_hint=(1, 0.2))
+        self.selected_med_label = Label(text='No medication selected', size_hint=(1, 0.2), color=(0.2, 0.2, 0.2, 1))
         self.admin_layout.add_widget(self.selected_med_label)
 
         # Dosage and route selection
         self.dosage_route_layout = BoxLayout(orientation='horizontal', size_hint=(1, 0.3), spacing=10)
 
         # Dosage
-        self.dosage_label = Label(text='Dosage:', size_hint=(0.3, 1))
+        self.dosage_label = Label(text='Dosage:', size_hint=(0.3, 1), color=(0.2, 0.2, 0.2, 1))
         self.dosage_route_layout.add_widget(self.dosage_label)
 
         self.dosage_spinner = Spinner(
@@ -91,7 +91,7 @@ class MedicationsScreen(Screen):
         # Route
         self.route_layout = BoxLayout(orientation='horizontal', size_hint=(1, 0.3), spacing=10)
 
-        self.route_label = Label(text='Route:', size_hint=(0.3, 1))
+        self.route_label = Label(text='Route:', size_hint=(0.3, 1), color=(0.2, 0.2, 0.2, 1))
         self.route_layout.add_widget(self.route_label)
 
         self.route_spinner = Spinner(
@@ -121,7 +121,8 @@ class MedicationsScreen(Screen):
             size_hint=(1, 1),
             halign='left',
             valign='top',
-            text_size=(None, None)
+            text_size=(None, None),
+            color=(0.2, 0.2, 0.2, 1)
         )
         self.response_label.bind(size=self.response_label.setter('text_size'))
         self.response_layout.add_widget(self.response_label)

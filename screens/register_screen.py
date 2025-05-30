@@ -33,7 +33,7 @@ class RegisterScreen(Screen):
         title = Label(
             text="VirtualDoctor Registration",
             font_size=dp(24),
-            color=(1, 1, 1, 1),
+            color=(0.2, 0.2, 0.2, 1), # Dark gray color
             bold=True
         )
         title_box.add_widget(title)
@@ -141,7 +141,7 @@ class RegisterScreen(Screen):
         )
         
         # Add all to form layout
-        form_box.add_widget(Label(text="Create a new account", color=(0, 0, 0, 1)))
+        form_box.add_widget(Label(text="Create a new account", color=(0.2, 0.2, 0.2, 1)))
         form_box.add_widget(reg_layout)
         form_box.add_widget(self.status_label)
         form_box.add_widget(button_layout)

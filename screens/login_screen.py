@@ -34,7 +34,7 @@ class LoginScreen(Screen):
         title = Label(
             text="VirtualDoctor Login",
             font_size=dp(24),
-            color=(1, 1, 1, 1),
+            color=(0.2, 0.2, 0.2, 1),
             bold=True
         )
         title_box.add_widget(title)
@@ -120,7 +120,7 @@ class LoginScreen(Screen):
         )
         
         # Add all to form layout
-        form_box.add_widget(Label(text="Enter your credentials", color=(0, 0, 0, 1)))
+        form_box.add_widget(Label(text="Enter your credentials", color=(0.2, 0.2, 0.2, 1)))
         form_box.add_widget(login_layout)
         form_box.add_widget(self.status_label)
         form_box.add_widget(button_layout)

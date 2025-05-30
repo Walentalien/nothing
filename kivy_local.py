@@ -51,6 +51,7 @@ class MainMenuScreen(Screen):
         self.title = Label(
             text='VirtualDoctor',
             font_size=36,
+            color=(0.2, 0.2, 0.2, 1),  # Dark gray color
             size_hint=(1, 0.2)
         )
         self.layout.add_widget(self.title)
@@ -59,6 +60,7 @@ class MainMenuScreen(Screen):
         self.subtitle = Label(
             text='Medical Simulation',
             font_size=18,
+            color=(0.2, 0.2, 0.2, 1),  # Dark gray color
             size_hint=(1, 0.1)
         )
         self.layout.add_widget(self.subtitle)
@@ -113,6 +115,7 @@ class MainMenuScreen(Screen):
         self.user_info = Label(
             text='Not logged in',
             font_size=14,
+            color=(0.2, 0.2, 0.2, 1),  # Dark gray color
             size_hint=(1, 0.1)
         )
         self.layout.add_widget(self.user_info)
@@ -211,7 +214,7 @@ class AboutScreen(Screen):
                  '• Experience points and progression system\n\n'
                  'Version: 1.0.0 (SQLite Local Edition)',
             font_size=20,
-            color=(0.9, 0.9, 0.9, 1),  # Light gray color
+            color=(0.2, 0.2, 0.2, 1),  # Dark gray color
             halign='left',
             valign='top',
             size_hint=(1, 0.7),
@@ -261,6 +264,7 @@ class SpecializationScreen(Screen):
         self.title = Label(
             text='Select Your Specialization',
             font_size=30,
+            color=(0.2, 0.2, 0.2, 1),  # Dark gray color
             size_hint=(1, 0.2)
         )
         self.layout.add_widget(self.title)
@@ -316,7 +320,8 @@ class SpecializationScreen(Screen):
             btn = Button(
                 text=spec['name'],
                 size_hint=(1, 0.7),
-                background_color=(0.2, 0.6, 0.8, 1)
+                background_color=(0.2, 0.6, 0.8, 1),
+                color=(0.2, 0.2, 0.2, 1) # Dark gray color
             )
             btn.specialization = spec['name']
             btn.bind(on_release=self.select_specialization)
@@ -325,7 +330,8 @@ class SpecializationScreen(Screen):
             # Description label
             lbl = Label(
                 text=spec['description'],
-                size_hint=(1, 0.3)
+                size_hint=(1, 0.3),
+                color=(0.2, 0.2, 0.2, 1) # Dark gray color
             )
             box.add_widget(lbl)
             
@@ -369,20 +375,20 @@ class PatientScreen(Screen):
         
         # Patient info
         self.patient_info = BoxLayout(orientation='vertical', size_hint_x=0.5)
-        self.patient_name = Label(font_size=20, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None))
+        self.patient_name = Label(font_size=20, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0.2, 0.2, 0.2, 1))
         self.patient_info.add_widget(self.patient_name)
         
-        self.patient_details = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None))
+        self.patient_details = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0.2, 0.2, 0.2, 1))
         self.patient_info.add_widget(self.patient_details)
         
-        self.patient_history = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None))
+        self.patient_history = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0.2, 0.2, 0.2, 1))
         self.patient_info.add_widget(self.patient_history)
         
         top_panel.add_widget(self.patient_info)
         
         # Vital signs
         vitals_panel = BoxLayout(orientation='vertical', size_hint_x=0.5)
-        vitals_title = Label(text="Vital Signs", font_size=18, size_hint_y=0.2)
+        vitals_title = Label(text="Vital Signs", font_size=18, size_hint_y=0.2, color=(0.2, 0.2, 0.2, 1))
         vitals_panel.add_widget(vitals_title)
         
         vitals_grid = GridLayout(cols=2, size_hint_y=0.8)
@@ -392,8 +398,8 @@ class PatientScreen(Screen):
         self.vital_labels = {}
         
         for vital in vital_signs:
-            name_label = Label(text=vital, halign='left', font_size=14)
-            value_label = Label(text="--", halign='left', font_size=14)
+            name_label = Label(text=vital, halign='left', font_size=14, color=(0.2, 0.2, 0.2, 1))
+            value_label = Label(text="--", halign='left', font_size=14, color=(0.2, 0.2, 0.2, 1))
             vitals_grid.add_widget(name_label)
             vitals_grid.add_widget(value_label)
             self.vital_labels[vital] = value_label
@@ -405,10 +411,10 @@ class PatientScreen(Screen):
         
         # Middle panel with symptoms
         middle_panel = BoxLayout(orientation='vertical', size_hint_y=0.2)
-        symptoms_label_title = Label(text="Current Symptoms", font_size=18, size_hint_y=0.3)
+        symptoms_label_title = Label(text="Current Symptoms", font_size=18, size_hint_y=0.3, color=(0.2, 0.2, 0.2, 1))
         middle_panel.add_widget(symptoms_label_title)
         
-        self.symptoms_label = Label(text="", halign='left', valign='top', font_size=14, size_hint_y=0.7)
+        self.symptoms_label = Label(text="", halign='left', valign='top', font_size=14, size_hint_y=0.7, color=(0.2, 0.2, 0.2, 1))
         self.symptoms_label.bind(size=self.symptoms_label.setter('text_size'))
         middle_panel.add_widget(self.symptoms_label)
         

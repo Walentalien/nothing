@@ -55,33 +55,46 @@ class DBManager:
             # Check if patient already exists
             db_patient = session.query(Patient).filter_by(patient_id=patient_model.patient_id).first()
             
+            # Prepare vital signs dictionary
+            vital_signs_dict = {}
+            if patient_model.vital_signs:
+                vital_signs_dict = {
+                    'pulse': patient_model.vital_signs.pulse,
+                    'systolic_bp': patient_model.vital_signs.systolic_bp,
+                    'diastolic_bp': patient_model.vital_signs.diastolic_bp,
+                    'temperature': patient_model.vital_signs.temperature,
+                    'respiratory_rate': patient_model.vital_signs.respiratory_rate,
+                    'oxygen_saturation': patient_model.vital_signs.oxygen_saturation
+                }
+            
             if db_patient:
                 # Update existing patient
-                vital_signs_dict = {}
-                if patient_model.vital_signs:
-                    vital_signs_dict = {
-                        'pulse': patient_model.vital_signs.pulse,
-                        'systolic_bp': patient_model.vital_signs.systolic_bp,
-                        'diastolic_bp': patient_model.vital_signs.diastolic_bp,
-                        'temperature': patient_model.vital_signs.temperature,
-                        'respiratory_rate': patient_model.vital_signs.respiratory_rate,
-                        'oxygen_saturation': patient_model.vital_signs.oxygen_saturation
-                    }
-                
                 db_patient.name = patient_model.name
                 db_patient.age = patient_model.age
                 db_patient.gender = patient_model.gender
-                db_patient.medical_history = str(patient_model.medical_history)
-                db_patient.current_symptoms = str(patient_model.current_symptoms)
-                db_patient.vital_signs = str(vital_signs_dict)
+                db_patient.medical_history = json.dumps(patient_model.medical_history)
+                db_patient.current_symptoms = json.dumps(patient_model.current_symptoms)
+                db_patient.vital_signs = json.dumps(vital_signs_dict)
                 db_patient.diagnosis = patient_model.diagnosis
                 db_patient.condition_severity = patient_model.condition_severity
             else:
                 # Create new patient
-                db_patient = Patient.from_model(patient_model)
+                db_patient = Patient(
+                    patient_id=patient_model.patient_id,
+                    name=patient_model.name,
+                    age=patient_model.age,
+                    gender=patient_model.gender,
+                    medical_history=json.dumps(patient_model.medical_history),
+                    current_symptoms=json.dumps(patient_model.current_symptoms),
+                    vital_signs=json.dumps(vital_signs_dict),
+                    diagnosis=patient_model.diagnosis,
+                    condition_severity=patient_model.condition_severity,
+                    admission_time=datetime.now()
+                )
                 session.add(db_patient)
             
             session.commit()
+            print(f"Successfully saved patient {patient_model.patient_id} to database")
             return True
         except Exception as e:
             print(f"Error saving patient to database: {e}")
@@ -111,8 +124,29 @@ class DBManager:
             # Convert DB model to domain model
             import json
             
+            # Safe JSON parsing with fallbacks
+            def safe_json_loads(json_str, default=None):
+                if not json_str or json_str.strip() == '':
+                    return default if default is not None else {}
+                try:
+                    # Handle case where it's already a Python object
+                    if isinstance(json_str, (dict, list)):
+                        return json_str
+                    # Clean up the JSON string if it has issues
+                    if isinstance(json_str, str):
+                        json_str = json_str.strip()
+                        # Handle common JSON issues
+                        if json_str.startswith('{') and not json_str.endswith('}'):
+                            json_str += '}'
+                        elif json_str.startswith('[') and not json_str.endswith(']'):
+                            json_str += ']'
+                    return json.loads(json_str)
+                except (json.JSONDecodeError, TypeError) as e:
+                    print(f"Failed to parse JSON '{json_str}': {e}")
+                    return default if default is not None else {}
+            
             # Parse vital signs
-            vital_signs_dict = json.loads(db_patient.vital_signs) if db_patient.vital_signs else {}
+            vital_signs_dict = safe_json_loads(db_patient.vital_signs, {})
             vital_signs = VitalSigns(
                 pulse=vital_signs_dict.get('pulse', 80),
                 systolic_bp=vital_signs_dict.get('systolic_bp', 120),
@@ -123,8 +157,8 @@ class DBManager:
             )
             
             # Parse medical history and symptoms
-            medical_history = json.loads(db_patient.medical_history) if db_patient.medical_history else []
-            current_symptoms = json.loads(db_patient.current_symptoms) if db_patient.current_symptoms else []
+            medical_history = safe_json_loads(db_patient.medical_history, [])
+            current_symptoms = safe_json_loads(db_patient.current_symptoms, [])
             
             # Create domain model
             patient_model = PatientModel(
@@ -466,6 +500,45 @@ class DBManager:
             return 0
         finally:
             session.close()
+    
+    @staticmethod
+    def initialize_sample_patients():
+        """
+        Initialize sample patients in the database
+        
+        Returns:
+            Number of patients added
+        """
+        try:
+            session = Session()
+            
+            # Check if base patients already exist (P001, P002, etc.)
+            existing_base_patients = session.query(Patient).filter(
+                Patient.patient_id.in_(['P001', 'P002', 'P003', 'P004', 'P005'])
+            ).count()
+            
+            if existing_base_patients > 0:
+                print(f"Base patients already exist in database ({existing_base_patients} found)")
+                return 0
+            
+            # Get sample patients from data loader
+            from utils.data_loader import DataLoader
+            sample_patients = DataLoader.get_sample_patients()
+            
+            count = 0
+            for patient in sample_patients:
+                # Save each patient using the database manager
+                if DBManager.save_patient(patient):
+                    count += 1
+            
+            print(f"Initialized {count} sample patients in database")
+            return count
+        except Exception as e:
+            print(f"Error initializing sample patients in database: {e}")
+            return 0
+        finally:
+            if 'session' in locals():
+                session.close()
 
 
     @staticmethod

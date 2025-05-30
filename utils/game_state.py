@@ -32,17 +32,30 @@ class GameState:
     
     def _initialize_patient_data(self) -> None:
         """Initialize patient data from the database or create sample data if not available."""
-        # Load patients from the database
-        self.patients = DBManager.get_all_patients()
-        
-        # If no patients in the database, use hardcoded sample patients
-        if not self.patients:
-            print("No patients found in database, using sample patients")
-            self.patients = DataLoader.get_sample_patients()
+        try:
+            # Load patients from the database
+            self.patients = DBManager.get_all_patients()
             
-            # Save sample patients to database
-            for patient in self.patients:
-                DBManager.save_patient(patient)
+            # If no patients in the database, initialize sample patients ONCE
+            if not self.patients:
+                print("No patients found in database, using sample patients")
+                # Only initialize sample patients if they don't already exist
+                patient_count = DBManager.initialize_sample_patients()
+                if patient_count > 0:
+                    print(f"Initialized {patient_count} sample patients")
+                    # Reload patients after initialization
+                    self.patients = DBManager.get_all_patients()
+                
+                # If still no patients, use hardcoded fallback
+                if not self.patients:
+                    print("Using hardcoded sample patients as fallback")
+                    self.patients = DataLoader.get_sample_patients()
+            else:
+                print(f"Found {len(self.patients)} existing patients in database")
+        except Exception as e:
+            print(f"Error initializing patient data: {e}")
+            # Fallback to hardcoded sample patients
+            self.patients = DataLoader.get_sample_patients()
     
     def set_doctor(self, doctor: Doctor) -> None:
         """
@@ -107,24 +120,43 @@ class GameState:
             True if patient was successfully loaded, False otherwise
         """
         try:
-            # Get the patient from the database
+            # First try to get the exact patient
             db_patient = DBManager.get_patient(patient_id)
             
             if db_patient:
-                # Convert database model to domain model if needed
-                if hasattr(Patient, 'from_db'):
-                    self.current_patient = Patient.from_db(db_patient)
-                else:
-                    # Use the database model directly
-                    self.current_patient = db_patient
-                    
+                self.current_patient = db_patient
                 self.current_case_id = f"case_{patient_id}_{datetime.now().strftime('%Y%m%d%H%M%S')}"
                 print(f"Loaded patient {self.current_patient.name} from database")
                 return True
             else:
-                print(f"Patient {patient_id} not found in database")
-                # Fall back to loading a random patient
-                return self.load_random_patient()
+                # If patient not found, try to find a base patient ID (remove timestamp)
+                base_patient_id = patient_id.split('_')[0]  # Get P001, P002, etc.
+                print(f"Patient {patient_id} not found, trying base ID {base_patient_id}")
+                
+                # Try to load the base patient
+                base_patient = DBManager.get_patient(base_patient_id)
+                if base_patient:
+                    # Create a new instance with timestamp
+                    self.current_patient = Patient(
+                        patient_id=patient_id,
+                        name=base_patient.name,
+                        age=base_patient.age,
+                        gender=base_patient.gender,
+                        medical_history=base_patient.medical_history.copy(),
+                        current_symptoms=base_patient.current_symptoms.copy(),
+                        vital_signs=base_patient.vital_signs,
+                        diagnosis=None,
+                        condition_severity=base_patient.condition_severity
+                    )
+                    self.current_case_id = f"case_{patient_id}"
+                    print(f"Created new patient instance {self.current_patient.name}")
+                    # Save the new patient instance
+                    DBManager.save_patient(self.current_patient)
+                    return True
+                else:
+                    print(f"Base patient {base_patient_id} not found either")
+                    # Fall back to loading a random patient
+                    return self.load_random_patient()
         except Exception as e:
             print(f"Error loading patient from database: {e}")
             # Fall back to loading a random patient

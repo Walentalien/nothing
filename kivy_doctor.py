@@ -204,7 +204,8 @@ class AboutScreen(Screen):
             text="About VirtualDoctor",
             font_size=24,
             size_hint_y=None,
-            height=dp(40)
+            height=dp(40),
+            color=(0.2, 0.2, 0.2, 1), #Dark gray text
         )
         layout.add_widget(title)
         
@@ -239,7 +240,8 @@ This application was developed as an educational tool and should not replace act
             size_hint_y=None,
             text_size=(Window.width - dp(60), None),
             halign='left',
-            valign='top'
+            valign='top',
+            color=(0.2, 0.2, 0.2, 1) #Dark gray text
         )
         about_label.bind(texture_size=about_label.setter('size'))
         text_grid.add_widget(about_label)

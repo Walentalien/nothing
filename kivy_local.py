@@ -158,11 +158,9 @@ class MainMenuScreen(Screen):
     def update_for_logged_user(self, user):
         """Update the UI when a user is logged in"""
         if user:
-            #how it was:
-            #self.user_info.text = f'Logged in as: {user.username}'
-
-            #proposed fix:
-            self.user_info.text = f'Logged in as: {user["username"]}'
+            # Handle both dict and object formats
+            username = user.get('username') if isinstance(user, dict) else user.username
+            self.user_info.text = f'Logged in as: {username}'
             self.login_btn.text = 'Dashboard'
             self.login_btn.background_color = (0.3, 0.7, 0.5, 1)  # Teal
             self.login_btn.unbind(on_release=self.go_to_login)

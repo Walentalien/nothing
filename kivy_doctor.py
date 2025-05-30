@@ -350,7 +350,8 @@ class SpecializationScreen(Screen):
                 size_hint_y=None,
                 height=dp(20),
                 text_size=(Window.width - dp(60), None),
-                halign='left'
+                halign='left',
+                 color=(0.2, 0.2, 0.2, 1),
             )
             spec_box.add_widget(tests_label)
             
@@ -361,7 +362,8 @@ class SpecializationScreen(Screen):
                 size_hint_y=None,
                 height=dp(20),
                 text_size=(Window.width - dp(60), None),
-                halign='left'
+                halign='left',
+                 color=(0.2, 0.2, 0.2, 1),
             )
             spec_box.add_widget(treatments_label)
             

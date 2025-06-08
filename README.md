@@ -4,16 +4,6 @@
 
 VirtualDoctor is an immersive educational medical simulation game that provides realistic patient diagnosis and treatment scenarios for medical training and education. The application supports multiple interfaces including a cross-platform Kivy GUI, web interface, and console version.
 
-## Architecture
-
-### Multi-Platform Support
-- **Kivy GUI**: Cross-platform desktop and mobile interface
-- **Web Interface**: Flask-based web application
-- **Console Version**: Terminal-based interaction for any environment
-### Database Architecture
-- **Production**: PostgreSQL with SQLAlchemy ORM
-- **Local Development**: SQLite with local database manager
-- **Authentication**: User management with secure password hashing
 
 ## Current Features
 
@@ -384,11 +374,11 @@ def init_db():
 ### Requirements
 ```bash
 # Core dependencies
-pip install kivy flask sqlalchemy psycopg2-binary
+pip install kivy sqlalchemy psycopg2-binary
 pip install matplotlib numpy scipy werkzeug
 
 # Development dependencies
-pip install pytest flask-testing
+pip install pytest 
 ```
 
 ### Database Setup
@@ -413,18 +403,9 @@ init_db()  # Creates local database with sample data
 #### Kivy GUI Version
 ```bash
 python kivy_doctor.py      # PostgreSQL version
-python kivy_local.py       # SQLite version
+python kivy_local.py       # SQLite version # Wasn't working properlys
 ```
 
-#### Web Interface
-```bash
-python web_doctor.py       # Runs on http://localhost:5000
-```
-
-#### Console Version
-```bash
-python main.py             # Terminal-based interface
-```
 
 ## Development Guidelines
 
@@ -438,7 +419,6 @@ python main.py             # Terminal-based interface
 ```python
 # Run test suite
 python test_local_sqlite.py    # Test SQLite implementation
-python -m pytest              # Full test suite
 ```
 
 ### Contributing

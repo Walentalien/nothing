@@ -17,13 +17,7 @@ class MainMenuScreen(Screen):
     """
     
     def __init__(self, game_state: GameState, **kwargs):
-        """
-        Initialize the main menu screen.
-        
-        Args:
-            game_state: Game state manager
-            **kwargs: Additional keyword arguments
-        """
+
         super(MainMenuScreen, self).__init__(**kwargs)
         self.game_state = game_state
         

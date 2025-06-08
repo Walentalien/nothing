@@ -1,10 +1,3 @@
-"""
-VirtualDoctor - Medical Imaging Demo
-
-This script demonstrates the Phase 3 medical imaging features 
-in the VirtualDoctor simulation game.
-"""
-
 import os
 import sys
 import matplotlib.pyplot as plt

@@ -1,13 +1,10 @@
 # VirtualDoctor Project Setup Guide
 
-## Project Overview
-VirtualDoctor is a medical simulation game with three interfaces:
-1. Console-based version (main.py)
-2. Web interface using Flask (web_doctor.py)
-3. Kivy GUI interface (kivy_doctor.py)
 
 ## Setup Instructions
-
+Git command that helped me :
+`git config --global credential.helper store`
+So git stores your credentialss
 ### Requirements
 - Python 3.11 or higher
 - PostgreSQL database (or SQLite)
@@ -16,7 +13,7 @@ VirtualDoctor is a medical simulation game with three interfaces:
 Install required dependencies:
 
 ```bash
-pip install kivy flask matplotlib numpy psycopg2-binary sqlalchemy
+pip install kivy matplotlib numpy psycopg2-binary sqlalchemy
 ```
 
 ### Database Setup

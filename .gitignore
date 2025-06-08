@@ -12,3 +12,9 @@ venv/
 
 
 __pycache__/
+# Other my files:
+.buildozer/
+buildozer.spec
+venv-py10/ 
+uv.lock
+.env

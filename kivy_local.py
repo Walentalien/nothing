@@ -375,13 +375,17 @@ class PatientScreen(Screen):
         
         # Patient info
         self.patient_info = BoxLayout(orientation='vertical', size_hint_x=0.5)
-        self.patient_name = Label(font_size=20, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0.2, 0.2, 0.2, 1))
+        #Updated colotr
+        # self.patient_name = Label(font_size=20, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0.2, 0.2, 0.2, 1))
+        self.patient_name = Label(font_size=10, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0, 0, 0, 1))
+
         self.patient_info.add_widget(self.patient_name)
-        
-        self.patient_details = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0.2, 0.2, 0.2, 1))
+        # Updated color
+        self.patient_details = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0, 0, 0, 1))
         self.patient_info.add_widget(self.patient_details)
-        
-        self.patient_history = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0.2, 0.2, 0.2, 1))
+        #Updated color of history
+        #self.patient_history = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0.2, 0.2, 0.2, 1))
+        self.patient_history = Label(font_size=14, halign='left', valign='top', text_size=(Window.width/2 - dp(20), None), color=(0, 0, 0, 1))
         self.patient_info.add_widget(self.patient_history)
         
         top_panel.add_widget(self.patient_info)
@@ -411,10 +415,10 @@ class PatientScreen(Screen):
         
         # Middle panel with symptoms
         middle_panel = BoxLayout(orientation='vertical', size_hint_y=0.2)
-        symptoms_label_title = Label(text="Current Symptoms", font_size=18, size_hint_y=0.3, color=(0.2, 0.2, 0.2, 1))
+        symptoms_label_title = Label(text="Current Symptoms", font_size=18, size_hint_y=0.3, color=(0, 0, 0, 1))
         middle_panel.add_widget(symptoms_label_title)
         
-        self.symptoms_label = Label(text="", halign='left', valign='top', font_size=14, size_hint_y=0.7, color=(0.2, 0.2, 0.2, 1))
+        self.symptoms_label = Label(text="", halign='left', valign='top', font_size=14, size_hint_y=0.7, color=(0, 0, 0, 1))
         self.symptoms_label.bind(size=self.symptoms_label.setter('text_size'))
         middle_panel.add_widget(self.symptoms_label)
         

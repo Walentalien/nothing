@@ -436,7 +436,7 @@ class PatientScreen(Screen):
         self.vital_labels = {}
         for vital in ["Heart Rate", "Blood Pressure", "Temperature", "Respiratory Rate", "O₂ Saturation"]:
             vitals_grid.add_widget(Label(text=vital, halign='left', text_size=(Window.width/4 - dp(20), None), color=(0, 0, 0, 1)))
-            label = Label(text="--", halign='left', text_size=(Window.width/4 - dp(20), None), color=(0, 0, 0, 1))
+            label = Label(text="--", halign='left', text_size=(Window.width/4 - dp(20), None), color=(0, 0,0, 1))
             vitals_grid.add_widget(label)
             self.vital_labels[vital] = label
         
@@ -524,6 +524,7 @@ class PatientScreen(Screen):
         patient = self.game_state.current_patient
         
         # Update patient info
+        #TODO: Fix coloring here
         self.patient_name.text = f"Patient: {patient.name}"
         self.patient_details.text = f"Age/Gender: {patient.age} years, {patient.gender}\nCondition: {self.get_condition_text(patient.condition_severity)}"
         

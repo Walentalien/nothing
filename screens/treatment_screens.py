@@ -24,7 +24,7 @@ class TreatmentsScreen(Screen):
             font_size=24,
             size_hint_y=None,
             height=dp(50),
-            color=(0.2, 0.2, 0.2, 1)
+            color=(0.9, 0.9, 0.9, 1)
         )
         layout.add_widget(title)
         

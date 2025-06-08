@@ -10,7 +10,6 @@ VirtualDoctor is an immersive educational medical simulation game that provides 
 - **Kivy GUI**: Cross-platform desktop and mobile interface
 - **Web Interface**: Flask-based web application
 - **Console Version**: Terminal-based interaction for any environment
-
 ### Database Architecture
 - **Production**: PostgreSQL with SQLAlchemy ORM
 - **Local Development**: SQLite with local database manager

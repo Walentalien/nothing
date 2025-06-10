@@ -5,13 +5,7 @@
 Git command that helped me :
 `git config --global credential.helper store`
 So git stores your credentialss
-### Requirements
-- Python 3.11 or higher
-- PostgreSQL database (or SQLite)
-
 ### Python Dependencies
-Install required dependencies:
-
 ```bash
 pip install kivy matplotlib numpy psycopg2-binary sqlalchemy
 ```
@@ -24,17 +18,6 @@ DATABASE_URL=sqlite:///virtualdoctor.db
 ```
 
 ### Running the Applications
-
-Console version:
-```bash
-python main.py
-```
-
-Web interface:
-```bash
-python web_doctor.py
-```
-
 Kivy GUI:
 ```bash
 python kivy_doctor.py
@@ -70,10 +53,10 @@ def login(self, instance):
 ```
 
 **Features**:
-- Secure password hashing with werkzeug
+- Secure password hashing with **werkzeug**
 - User session management
-- Dashboard with user statistics
-- Progress tracking across sessions
+- Dashboard with user statistics (future)
+- Progress tracking across sessions (future)
 
 ### 2. Medical Specialization System
 
@@ -448,7 +431,7 @@ init_db()  # Creates local database with sample data
 #### Kivy GUI Version
 ```bash
 python kivy_doctor.py      # PostgreSQL version
-python kivy_local.py       # SQLite version # Wasn't working properlys
+python kivy_local.py       # SQLite version # Wasn't working properly
 ```
 
 
@@ -465,12 +448,6 @@ python kivy_local.py       # SQLite version # Wasn't working properlys
 # Run test suite
 python test_local_sqlite.py    # Test SQLite implementation
 ```
-
-### Contributing
-1. Fork the repository
-2. Create a feature branch
-3. Implement changes with tests
-4. Submit a pull request with detailed description
 
 ## Educational Value
 

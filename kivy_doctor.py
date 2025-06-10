@@ -1,8 +1,3 @@
-"""
-VirtualDoctor - Kivy GUI Version
-A medical simulation game with graphical interface
-"""
-
 import os
 import random
 import json
@@ -19,10 +14,8 @@ from kivy.core.window import Window
 from kivy.metrics import dp
 from kivy.uix.spinner import Spinner
 
-# Create directories if they don't exist
 os.makedirs('data/images', exist_ok=True)
 
-# Import our models
 from models.patient import Patient, VitalSigns
 from utils.image_generator import ImageGenerator
 from models.doctor import Doctor, get_available_specializations
@@ -30,21 +23,12 @@ from models.diagnosis import diagnosis_catalog
 from utils.db_manager import DBManager
 from utils.game_state import GameState
 
-# Set some global parameters (only if Window is available)
 try:
     Window.size = (800, 600)
     Window.clearcolor = (0.9, 0.9, 0.9, 1)
 except AttributeError:
-    # Window not available in headless environment
+    # window not available in headless environment
     pass
-
-# Fix font rendering
-from kivy.core.text import LabelBase
-from kivy.resources import resource_add_path
-
-# Add fonts directory to resources
-resource_add_path(os.path.join(os.path.dirname(__file__), 'assets/fonts'))
-
 # Try to register default system fonts if they exist
 try:
     # Common font locations by OS
@@ -72,7 +56,7 @@ class MainMenuScreen(Screen):
         # Main layout
         layout = BoxLayout(orientation='vertical', spacing=10, padding=20)
         
-        # Add title with background
+        #title with background
         title_box = BoxLayout(size_hint_y=0.15)
         with title_box.canvas.before:
             Color(0.2, 0.6, 0.8, 1)  # Medical blue
@@ -82,7 +66,7 @@ class MainMenuScreen(Screen):
         title = Label(
             text="VirtualDoctor",
             font_size=32,
-            color=(1, 1, 1, 1),  # White text on blue background
+            color=(1, 1, 1, 1),  
             bold=True
         )
         title_box.add_widget(title)
@@ -98,9 +82,7 @@ class MainMenuScreen(Screen):
         )
         layout.add_widget(subtitle)
         
-        # Add image - we'll use a placeholder
         logo = Image(
-            # source='assets/logo.png' if os.path.exists('assets/logo.png') else None,
             source='generated-icon.png' if os.path.exists('generated-icon.png') else None,
             size_hint_y=None,
             height=dp(200)
@@ -1302,7 +1284,7 @@ class DiagnosisScreen(Screen):
                 'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             }
             
-            # Save the diagnosis result as a special type of test result
+            # Save the diagnosi(0, 0, 0, 1)  # Set text color to blacks result as a special type of test result
             DBManager.save_test_result(
                 self.game_state.current_patient.patient_id, 
                 "Final_Diagnosis", 
@@ -1453,6 +1435,7 @@ class DiagnosisResultsScreen(Screen):
                 height=dp(30),
                 halign='left',
                 text_size=(Window.width - dp(40), None)
+                color = (0, 0, 0, 1)  # Set text color to black
             )
             self.results_layout.add_widget(treatments_title)
             
@@ -1463,11 +1446,13 @@ class DiagnosisResultsScreen(Screen):
                     size_hint_y=None,
                     height=dp(20),
                     halign='left',
-                    text_size=(Window.width - dp(40), None)
+                    text_size=(Window.width - dp(40), None),
+                    # Some place in hierarhy defines white for text color
+                    color=(0, 0, 0, 1)  # Set text color to black
                 )
                 self.results_layout.add_widget(treatment_label)
         
-        # Add score information
+        # score information
         if self.game_state.doctor:
             score_label = Label(
                 text=f"Current score: {self.game_state.doctor.score}",
@@ -1494,24 +1479,12 @@ class DiagnosisResultsScreen(Screen):
 
 class VirtualDoctorApp(App):
     def build(self):
-        # Initialize the database if needed
-        print("Initializing PostgreSQL database...")
-        # Initialize database tables if they don't exist
-        
-        # Create the game state
         self.game_state = GameState()
-        
-        # Initialize user variable for authentication
         self.current_user = None
-        
-        # Initialize medical conditions in the database
         print("Loading medical conditions into database...")
         DBManager.initialize_conditions()
         
-        # Create the screen manager
         sm = ScreenManager()
-        
-        # Add all game screens
         sm.add_widget(MainMenuScreen(name='main_menu'))
         sm.add_widget(AboutScreen(name='about'))
         sm.add_widget(SpecializationScreen(name='specialization'))
@@ -1523,13 +1496,12 @@ class VirtualDoctorApp(App):
         sm.add_widget(DiagnosisScreen(name='diagnosis'))
         sm.add_widget(DiagnosisResultsScreen(name='diagnosis_results'))
         
-        # Import user screens
+
         from screens.login_screen import LoginScreen
         from screens.register_screen import RegisterScreen
         from screens.dashboard_screen import DashboardScreen
         from screens.medications_screen import MedicationsScreen
         
-        # Add user management screens
         sm.add_widget(LoginScreen(name='login'))
         sm.add_widget(RegisterScreen(name='register'))
         sm.add_widget(DashboardScreen(name='dashboard'))
@@ -1540,10 +1512,8 @@ class VirtualDoctorApp(App):
 
 
 if __name__ == '__main__':
-    # Create assets directory if it doesn't exist
     os.makedirs('assets', exist_ok=True)
-    
-    # If logo doesn't exist, create a simple placeholder
+    # Here is a fallback for missing logo; But i'm using custom one
     if not os.path.exists('assets/logo.png'):
         import matplotlib.pyplot as plt
         import numpy as np
@@ -1573,5 +1543,4 @@ if __name__ == '__main__':
         # plt.savefig('assets/logo.png', bbox_inches='tight', dpi=100)
         plt.savefig('generated-icon.png', bbox_inches='tight', dpi=100)
         plt.close()
-    
     VirtualDoctorApp().run()
